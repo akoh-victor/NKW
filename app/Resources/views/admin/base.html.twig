@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Nimi Kiddies World{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets filter="scssphp" output="css/app.css"
+            "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
+            "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
+            "%kernel.root_dir%/Resources/assets/css/carousel.css"
+            "%kernel.root_dir%/Resources/assets/css/admin.css"
+            "%kernel.root_dir%/Resources/assets/css/font.css"
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('logo.jpg') }}" />
+    </head>  
+    <body id="{% block body_id %}{% endblock %}">
+    <div id="wrapper ">
+        <!-- Navigation -->
+
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-color: #424f5a;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href={{ path('admin')}}>Ideal IT Solutions Admin Panel  v1.6</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown disabled">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+
+                        <li class="divider"></li>
+
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-file fa-fw"></i> Parties</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-file fa-fw"></i> Customer care</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-file fa-fw"></i> Services</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown disabled">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a> </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a> </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div style="background-color: #424f5a;" class="navbar-default sidebar" role="navigation">
+                <div class="vertical">
+                    <ul class="" id="side-menu">
+                        {% block sideNav %}
+
+                        <li>
+                            <a href={{ path('admin')}}><i class=""></i> Dashboard</a>
+                        </li>
+                        <li>*
+                                <a href={{ path('create category')}}> Departments</a>
+                                <ul>
+
+                                    {% for department in departments %}
+                                        <li><a href="{{ path('edit_department', {'id':  department.id})}}"><i class=""></i><strong>{{ department
+                                                    .name  }}</strong></a>
+                                            <ul>
+                                                {% for category in department.category %}
+                                                    <li>
+                                                        <a href=""><i class=""></i><strong>{{ category.name  }}</strong></a>
+                                                        <ul>
+                                                            {% for group in category.group %}
+                                                                <li>
+                                                                    <a href='{{ path('create group product',
+                                                                    {'group_id':  group.id})}}'><i
+                                                                                class=""></i><strong>{{ group.name  }}</strong></a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    <a href='{{ path('create category group',
+                                                    {'category_id':  category.id})}}'><i class=""></i> Create Groups
+                                                        for {{ category.name  }}</a>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <a href='{{ path('create department category',
+                                        {'dept_id':  department.id})}}'><i class=""></i> Add Category to Department(
+                                            {{ department.name  }}  )</a>
+                                    {% endfor %}
+                                </ul>
+                        </li>
+                            <li>
+                                <a > Manage Orders</a>
+                            </li>
+                        <li>
+                            <a href={{ path('create category')}}> Create Category</a>
+                        </li>
+                        <li>
+                            <a href={{ path('create brand')}}> Create Brand</a>
+                        </li>
+                        <li>
+                            <a href={{ path('create advert')}}> Create Advert</a>
+                        </li>
+                        <li>
+                            <a href={{ path('create badge')}}> Create Badge</a>
+                        </li>
+                        <li>
+                            <a href={{ path('create department')}}> Create Department</a>
+                        </li>
+
+                  {% endblock %}
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+
+
+        <!-- Page Content -->
+        <div  id="page-wrapper">
+                   {% block page %}
+
+                           {% block bodyTitle %}  <h3 class="h1">Dashboard </h3>   {% endblock %}
+
+
+                                    <div class="col-sm-7 panel panel-red">
+                                       {% block content %}{% endblock %}
+                                    </div>
+                                    <div class="col-sm-5 panel panel-red">
+                                       {% block sideBarRight %}{% endblock %}
+                                    </div>
+                   {% endblock %}
+
+    </div>
+    </div>
+
+
+    <!-- scrips  -->
+    {% block javascripts %}
+        {% javascripts filter="?jsqueeze" output="js/app.js" %}
+        "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
+        "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
+        "%kernel.root_dir%/Resources/assets/js/carousel.js"
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+
+
+    </body>
+
+</html>

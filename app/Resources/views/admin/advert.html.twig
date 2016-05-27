@@ -1,0 +1,30 @@
+{% extends 'admin/base.html.twig' %}
+    {% block page %}
+
+
+
+        {% block bodyTitle %}  <h3 class="h1">Create Advert </h3>   {% endblock %}
+
+         {% block content %}
+            {{ include('admin/_form.html.twig') }}
+         {% endblock %}
+
+
+        {% block sideBarRight %}
+            <table class="table  table-hover">
+                <tbody>
+                {% for advert in adverts %}
+                    <tr>
+                        <td> <a href="/admin/advert/edit/{{ advert.id }}"> {{ advert.title |capitalize }} </a></td>
+                    </tr>
+                {%  endfor %}
+                </tbody>
+            </table>
+        {% endblock %}
+
+    {% endblock %} 
+
+ 
+  
+
+    

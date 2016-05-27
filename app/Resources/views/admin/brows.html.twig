@@ -1,0 +1,94 @@
+{% extends 'admin/base.html.twig' %}
+    {% block page %}
+
+
+
+        <div class="col-sm-6 col-md-8 col-lg-8">
+            <div class="jumbotron">
+
+
+                <div class="thumbnail">
+
+                    {% if selMessage is defined %}
+
+                       <h3 class="page-header"> {{ selMessage.title }}</h3>
+                        <p>
+                            {{  selMessage.message | nl2br }}<br />
+                            <h6>sent by - {{ selMessage.firstName }} {{ selMessage.lastName }}
+                            {{  selMessage.posted | date }}</h6>
+
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-4">
+            {% block sideBarRight %}
+             <div class="jumbotron message">
+
+                    {% if recentUnreadMessages is defined %}
+                        <h3>Recent Messages </h3>
+                        <table class="table  table-hover">
+                            <tbody>
+                            {% for Message in recentUnreadMessages %}
+                                <tr><td> <a href="/admin/message/read/{{ Message.id }}"> {{ Message.title |capitalize }} - {{ Message.posted |date }}</a></td></tr>
+                            {%  endfor %}
+                            </tbody>
+                        </table>
+
+                    {% endif %}
+                </div>
+                <hr />
+                <div class="jumbotron message">
+
+                    {% if recentMessages is defined %}
+                        <h3 class="page-header">Recent Messages </h3>
+                        <table class="table  table-hover">
+                            <tbody>
+                            {% for Message in recentMessages %}
+                               <tr><td> <a href="/admin/message/read/{{ Message.id }}"> {{ Message.title |capitalize }} - {{ Message.posted |date }}</a></td></tr>
+                            {%  endfor %}
+                            </tbody>
+                        </table>
+
+                    {% endif %}
+                </div>
+                <hr />
+                <div class="jumbotron message">
+
+                    {% if recentReadMessages is defined %}
+                        <h3> Recent Read Messages </h3>
+                        <table class="table  table-hover">
+                            <tbody>
+                            {% for Message in recentReadMessages %}
+                                 <tr><td> <a href="/admin/message/read/{{ Message.id }}"> {{ Message.title |capitalize }} - {{ Message.posted |date }}</a></td></tr>
+                            {%  endfor %}
+                            </tbody>
+                        </table>
+
+                    {% endif %}
+                </div>
+                <hr />
+                <div class="jumbotron message">
+
+                    {% if unreadMessages is defined %}
+                        <h3> Unread Messages </h3>
+                        <table class="table  table-hover">
+                            <tbody>
+                            {% for Message in unreadMessages %}
+                                <tr><td> <a href="/admin/message/read/{{ Message.id }}"> {{ Message.title |capitalize }} - {{ Message.posted |date }}</a></td></tr>
+                            {%  endfor %}
+                            </tbody>
+                        </table>
+
+                    {% endif %}
+                </div>
+
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+
+
+
+

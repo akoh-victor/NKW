@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}{% endblock %}
+{% block content %}
+    {% if account is defined %}
+
+        <ol class="breadcrumb">
+            <li><strong>You are here :</strong></li>
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li class="disabled"><a href="/profile">Profile</a></li>
+            <li class="disabled"><a href="#">Account</a></li>
+            <li class="active"><a href="#/profile/account/{{ link }}"><strong>{{ link |title }}</strong></a></li>
+            {{ account }}
+        </ol>
+
+
+        {% include "profile/account.html.twig" %}
+    {% endif %}
+    {% if activities is defined %}
+
+        <ol class="breadcrumb">
+            <li><strong>You are here :</strong></li>
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li class="disabled"><a href="/profile">Profile</a></li>
+            <li class="active"><a href="#/profile/activities/"><strong>Activities</strong></a></li>
+        </ol>
+        {% include "profile/activities.html.twig" %}
+    {% endif %}
+
+
+
+         {% if default is defined %}
+
+             <ol class="breadcrumb">
+                 <li><strong>You are here :</strong></li>
+                 <li><a href="{{ path('home') }}">Home</a></li>
+                 <li ><a href="/profile">Profile</a></li>
+                 <li class="active"><strong>Default Profile View</strong></li>
+
+             </ol>
+
+             {% include default %}
+
+        {% endif %}
+
+
+{% endblock %}

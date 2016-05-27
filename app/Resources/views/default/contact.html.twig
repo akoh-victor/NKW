@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% block nav %}{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active"><a href=""><strong>Contact Us</strong></a></li>
+    </ol>
+
+<div class="container panel panel-default">
+<div class="col-md-6 col-md-offset-1">
+<div class="left">
+<h4>Our support team is ready to assist you.</h4>
+
+    <h2>Contact us via this form</h2>
+
+    {% if form is defined %}
+        <div class="well">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
+
+</div>
+</div>
+<div class="col-md-4 ">
+	<div class="panel">
+        <div class="rihhght">
+            <h2>Contact Details</h2>
+
+            <p>Need help? We will be happy to hear from you. <br />
+                For contacting us please use our contact page or the email and phone info below.</p>
+            <p><strong>Office</strong> : +234-8114551455<br />
+                <strong>Email</strong> : email@nimikiddies.com</p>
+            <h2>Email Support</h2>
+            <p>
+                <strong>Info</strong> : info@nimikiddies.com<br />
+                <strong>Technical</strong>: support@nimikiddies.com<br />
+                <strong>Jobs</strong> : jobs@nimikiddies.com<br />
+            </p>
+            <h2>Office Directions</h2>
+            <p>  57, Tombia Extension <br />G.R.A Phase 3,
+                <br /> Port Harcourt River State
+            </p><br />
+
+
+            <h2>Media</h2>
+            <p> <strong>Facebook</strong><br />
+               <span>
+                   <a href="http://www.facebook.com/nimikiddies" target="_blank">
+                   <img src="{{ asset('images/facebook.png') }}" alt="facebook"
+                        width="30" height="30" border="0"
+                        class="rss" /> www.facebook.com</a></span>
+            </p>
+            <p> <strong>Twitter</strong><br />
+                <a href="http://www.twitter.com/nimikiddies" target="_blank">
+                <img src="{{ asset('images/twitter.png') }}" alt="twitter"
+                     width="30" height="30" border="0"
+                     class="rss" />
+                www.twitter.com</a></p>
+            <p> <strong>Whatsapp</strong><br /><a>
+                    <img src="{{ asset('images/whatsapp.jpg') }}" alt="twitter"
+                         width="30" height="30" border="0"
+                         class="rss" />
+                    08058093332</a></p>
+        </div>
+
+
+
+
+
+	</div>
+</div>
+
+
+</div>
+{% endblock %}

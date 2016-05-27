@@ -1,0 +1,27 @@
+{% extends 'admin/base.html.twig' %}
+    {% block page %}
+
+
+
+ <div class="col-sm-6 col-md-8 col-lg-8">
+     <div class="jumbotron">
+        {% block bodyTitle %}  <h3 class="h1">Create Group for Category </h3>   {% endblock %}
+        {{ include('admin/_form.html.twig') }}
+     </div>
+ </div>
+<div class="col-sm-6 col-md-3 col-lg-4">
+        {% block sideBarRight %}
+            {% for group in groups %}
+                    <li>
+                        <a href='/admin/product/create/{{ group.id }}'><i class=""></i><strong>Start adding product to{{ group
+                                .name  }}</strong></a>
+                    </li>
+            {% endfor %}
+        {% endblock %}
+</div>
+    {% endblock %} 
+
+ 
+  
+
+    

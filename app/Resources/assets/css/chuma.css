@@ -1,0 +1,445 @@
+@charset "utf-8";
+/*
+ * 	Core SOLVE CSS File
+ *	v1.0.0
+ */
+
+
+
+body {
+    background-color: #EBE8E4;
+    color: #222;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.user-nav {
+    color: black;
+    min-width: 100%;
+    max-height: 2em;
+    min-height: 2em;
+    margin: 0 0 0.3em 0;
+    background-color: white;
+    padding: 0 5em 0 5em;
+    box-shadow: 0 6px 6px -1px rgba(0, 0, 0, 0.055);
+}
+.user-nav > ul {
+    display: inline-block;
+    margin: 0;
+    padding-top: 0.3em;
+}
+
+.user-nav > ul > li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0 2em 0 0;
+
+}
+.user-nav > ul > li > a{
+    color: black;
+}
+.top-header{
+    position: relative;
+    max-width: 80%;
+    margin: 0;
+    padding: 0.1em 0 10px;
+    white-space: nowrap;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}
+.ads{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    height: 19em;
+    border: 1px solid #dedede;
+}
+.profile{
+    width: 100%;
+    margin-left: 0;
+    min-height: 30em;
+
+    border: 1px solid #dedede;
+}
+.ads-small{
+    width: 100%;
+    margin-top: 0.5em;
+    height: 7em;
+}
+
+.parent {
+    border-bottom: 1px solid #dedede;
+    background-color: transparent;
+    color: #888;
+    overflow: hidden;
+    width: 120%;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.parent > li {
+    list-style-type: none;
+    color: #888;
+    background-color: transparent;
+    border-bottom: 1px solid #dedede;
+    display: block;
+    padding: .5em .02em;
+    margin: 0;
+}
+.parent > li > a  {
+    color: #222222;
+    display: block;
+    text-decoration: none;
+}
+.parent > li:hover {
+    background-color: ghostwhite;
+}
+/*display the child element on hover */
+.parent >  li:hover > .child {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/*second tier div*/
+.child {
+    background: ghostwhite none repeat scroll 0 0;
+    position: absolute;
+    display: none;
+    width: 13em;
+    z-index: 100;
+    left: 100%;
+    border: 1px solid #EAEAEA;
+    margin-left: 0;
+    margin-top: -2em;
+    box-shadow: 5px 5px 5px #AAA;
+}
+
+.child > li {
+    list-style-type: none;
+    color: #888;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.child > li > a  {
+    color: #222222;
+    display: block;
+    text-decoration: none;
+    padding-bottom: 0;
+}
+.child > li:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+/*display the child element on hover */
+.child >  li:hover > .grandchild {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.deptNav {
+    border-top: 2px solid darkslategrey ;
+    border-bottom: 0 solid #dedede;
+    text-align: center;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+    color: #888;
+    display: block;
+    margin: 30px 50% 30px 2%;
+    overflow: hidden;
+    width: 96%;
+    padding:  0 2%;
+    height: 2.0em;
+    background-color: #ccccff;
+}
+.deptNav ul {
+    margin: 0;
+    padding: 0;
+}
+.deptNav ul li {
+    display: inline-block;
+    list-style-type: none;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.deptNav > ul > li > a {
+    color: black;
+    display: block;
+    margin-bottom: 0.5em;
+    padding: 0 30px;
+    text-decoration: none;
+}
+.deptNav > ul > li > a > .caret {
+    border-top: 4px solid #aaa;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    vertical-align: middle;
+
+    -webkit-transition: color 0.1s linear;
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+}
+
+/*hover state*/
+.deptNav > ul > li:hover {
+    background-color: rgb( 40, 44, 47 );
+}
+
+.deptNav > ul > li:hover > a {
+    color: rgb( 255, 255, 255 );
+}
+
+.deptNav > ul > li:hover > a > .caret {
+    border-top-color: rgb( 255, 255, 255 );
+}
+
+/*second tier div*/
+.deptNav > ul > li > div {
+    background-color: whitesmoke;
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+    box-shadow: 0 7px 7px -1px rgba(0, 0, 0, 0.055);
+    display: none;
+    margin: 0;
+    padding: 0.2em ;
+    opacity: 0;
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    height: 19em;
+    z-index: 100;
+    visibility: hidden;
+
+
+    -webkit-transiton: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    -transition: opacity 0.2s;
+}
+/*display the child element on hover */
+.deptNav > ul > li:hover > div {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.deptNav > ul > li > div > div > a :hover {
+    color: red;
+}
+
+/**/
+.navLogoBadge {
+    opacity: 0.6;
+    height: inherit;
+    width: 35%;
+    background-color: #dfdfdf;
+    padding: 1.5em;
+    margin: 1.5em;
+
+}
+
+
+
+
+.product-filter {
+    background-color: white;
+    border-top: 0;
+    border-radius: 0 0 0 0;
+    box-shadow: 0 9px 9px -1px rgba(0, 0, 0, 0.055);
+    margin: 4em 1em 0;
+    padding: .3em ;
+    opacity: 3;
+    left: 5%;
+    right: 5%;
+    width: 100%;
+    min-height: 14em;
+    z-index: 100;
+
+    -webkit-transiton: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    -transition: opacity 0.2s;
+
+}
+
+.department-writeup{
+    margin: 0px 0px 50px; font-family: Aleo Regular,Palatino Linotype,Palatino;
+    margin-left: 0px;
+    text-overflow: clip;
+    height: 118px;
+    width: 420px;
+    white-space: normal;
+    padding: 0px;
+}
+
+.msg{
+background: rgb(113,223,113);
+    color: rgb(38,88,38);
+    padding: 0.813em 0;
+}
+.msg li:last-child{
+    margin: 0;
+    list-style-type: none;
+}
+
+.msg li:last-child{
+    padding: 0 0.813em ;
+    list-style-type: none;
+}
+.err{
+    background: rgb(255,77,77);
+    color: #fff;
+}
+.form-error {
+    background-color:lemonchiffon ;
+    border:1px dashed orange ;
+    padding:3px
+}
+.news{
+    overflow-y: scroll;
+    height: 400px;
+}
+.foot{
+
+}
+.foot h1{
+    color:#2AB59C ;
+    font-size: medium;
+    font-family: cursive;
+}
+.foot h3{
+    line-height: 2em;
+    color:#fff ;
+    font-size: medium;
+}
+.foot div{
+    height: 200px;
+    border-right: 1px solid #29292A;
+    padding-right: 50px;
+
+}
+.wrapper{
+    font-size: medium;
+    border:1px;
+    border-style: solid;
+    border-color: antiquewhite;
+    padding: 5px 5px 5px 5px;
+    margin-bottom:15px;
+    list-style:none;
+    background-color:white;
+    word-wrap: break-word;
+    text-wrap: normal;
+    overflow: auto;
+}
+#header-contact{
+    color:white;
+    width: 35%;
+    display: inline-block;
+    margin-left: 4%;
+    padding-left: 0%;
+    padding-top: 1%;
+    font-size: 1.1em;
+    font-weight: lighter;
+    font-family: "Courier New", Courier;
+}
+
+.carouselProducts{
+    margin: 5px;
+    height:300px
+}
+.carouselProductsCaption{
+    margin-top: 0.29em;
+    padding: 1.0em;
+    background-color: beige;
+    height: 28%
+}
+
+.link {  }
+.link ul
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.link ul li
+{
+    display: inline;
+    float: left;
+    margin: 0.9em 0.5em;
+
+}
+
+.link ul li a {
+    display:block;
+    width:13em;
+}
+
+
+span img{
+    width: 12em;
+    height: 12em;
+}
+
+
+
+.link > .price-box {
+    display: block;
+    margin-bottom: 5px;
+}
+.link > .title {
+    margin: 0px;
+    padding: 0px;
+}
+.title{
+    color:#00b3ee;
+}
+.title > .brand {
+    display: block;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    color: #404040;
+    border-bottom: 1px solid #E9E9E9;
+    margin: 4px 0px;
+    padding-bottom: 4px;
+}
+.title > .name {
+    font-weight: 500;
+    color: #565656;
+    margin: 3px 0px 5px;
+    text-align: left;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-height: 2.824em;
+}
+.h2, h2 {
+    font-size: 25px;
+}
+
+
+
+
+footer{
+    background-color: white;
+    color: #888;
+    min-width: 100%;
+    max-height: 25em;
+    min-height: 23em;
+    margin: 0 0 0.3em 0;
+    padding: 2em 2em 0 2em;
+    box-shadow: 0 2px 2px -4px rgba(0, 0, 0, 0.095);
+}

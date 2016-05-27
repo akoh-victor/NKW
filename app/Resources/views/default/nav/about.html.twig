@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+                       {% block menu %}
+                          <li> <a href={{ path('home')}}><i class="fa fa-home"></i> <strong>Home</strong> </a></li>
+                            <li><a href={{ path('service')}}><strong>Services</strong></a></li>
+		                    <li> <a href={{ path('news')}}><i class="fa fa-about"></i><strong>News</strong></a> </li>
+		                    <li class="active"><a href={{ path('about')}}>  <i class="fa fa-about"></i><strong> About</strong></a> </li>
+		                    <li> <a href={{ path('faq')}}> <i class="fa fa-about"></i><strong> FAQ</strong> </a>  </li>
+		                    <li> <a href={{ path('contact')}}> <i class="fa fa-contact"></i><strong> Contact Us</strong></a> </li>
+                       {% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block badge %}
+<div id="sliderAbout"><img src="{{ asset('images/banners/us.png') }}" width="100%" height="200" alt="Myadmissionlink Educational Consult"/>
+{% endblock %}
+
+{% block content %}
+<hr />
+<div class="col-md-6 col-sm-push-2" >
+     <div class="panel panel-info">
+		 <div class="panel-body alert-warning">
+			<h2 align="center" class="page-header">Mission, Vision and Values</h2>
+			<p>At MEC, our VISION is clear, our MISSION is
+			attainable and we trust our VALUES  of honesty,
+			commitment , accountability to help us in achieving
+			effective and efficient  service delivery to our
+			esteem clients.
+			</p>
+			<h2 align="center" class="page-header">Mission Statement</h2>
+			<ul class="p">
+			<li>To assist clients in actualization of their academic pursuit.</li>
+			<li>Providing a framework that focuses on clients satisfaction in service delivery.</li>
+			<li>Providing pathway to development of skills and talent through through training and consultation services.</li>
+			</ul>
+
+			<h2 align="center" class="page-header">Vision</h2>
+			<p>To become household name in offering educational
+                  services in Nigeria and abroad.</p>
+
+			<h2 align="center"  class="page-header">Values</h2>
+			<p><strong>Integrity |</strong> We do the right thing regardless of the consequences.<br />
+
+			<strong>Pursuit of Excellence| </strong>We continually strive to exceed the expectations of our people and our clients.<br />
+
+			<strong>Accountability|</strong> We take responsibility for individual and collective actions.<br />
+
+			<strong>Collaboration |</strong> We work together to achieve collective and individual goals.<br /></p>
+			<h2 align="center" class="page-header">Our Team</h2><p>MEC operates with a team of certified educationists,
+				counsellors, visa experts and consultants to ensure
+				our clients expectation of optimum service delivery
+				at all times are meant. In light of this, we have high
+				admission and visa success rate thus MEC is a force to
+				reckon with when it comes to admission and visa
+				application abroad.</p>
+		 </div>
+	 </div>
+</div>
+<div class="col-md-2 col-sm-push-3 panel"><img src="{{ asset('images/ijmbadmissions2.gif') }}"/></div>
+
+
+
+{% endblock %}

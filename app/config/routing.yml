@@ -1,0 +1,20 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+sylius_order:
+    resource: "@SyliusCartBundle/Resources/config/routing.yml"
+
+
+
+
+ #employee_registration:
+     #pattern:  /register/employee
+  #   defaults: { _controller: AppBundle:Employee:register }
+
+customer_registration:
+    pattern:  /register/customer
+    defaults: { _controller: AppBundle:Customer:register }
+
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

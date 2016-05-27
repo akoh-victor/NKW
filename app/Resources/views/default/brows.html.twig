@@ -1,0 +1,188 @@
+{% extends 'base.html.twig' %}
+
+
+{% block nav %}{% endblock %}
+
+{% block content  %}
+<div class="container">
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li><a href="{{ path('department',{'id': selectedProduct.group.category.department.id}) }}">{{ selectedProduct.group.category
+                .department.name |title }}</a></li>
+        <li><a href="{{ path('category',{'categoryId': selectedProduct.group.category.id}) }}">{{ selectedProduct.group.category.name |title }}</a></li>
+        <li><a href="{{ path('group',{'groupId': selectedProduct.group.id}) }}">{{ selectedProduct
+                    .group.name |title }}</a></li>
+        <li class="active"><strong>{{ selectedProduct.name |title }}</strong></li>
+    </ol>
+
+    <div class="col-sm-6  panel panel-danger" >
+        <div id="selectedProducts" class="owl-carousel">
+
+            {% if selectedProduct  is defined  %}
+                <div class="thumbnail">
+                            <img src="{{ vich_uploader_asset(selectedProduct, 'frontImageFile') }}" alt="" style="width:auto;  ">
+                    {#<img src="{{ vich_uploader_asset(selectedProduct, 'rearImageFile') }}" alt="" style="width:auto;  ">#}
+                </div>
+            {%  endif %}
+        </div>
+    </div>
+    
+    <div class="col-sm-6" >
+        <div class="panel panel-red">
+              <h4 class=" panel panel-heading">{{ selectedProduct.name | title }}
+
+              <span class="pull-right">
+                  <span data-currency-iso="NGN">NGN</span>
+                  <span data-price="{{ selectedProduct.price }}">{{ selectedProduct.price }}</span>
+                                            </span>
+              </h4>
+
+               <br />
+               <div style = "background-color:rgba(230,225,225,0.2)" >
+                   <hr />
+
+
+                   {% set form = sylius_cart_form({'data_class': dataclase}) %}
+                        <table class="table-condensed">
+                           <form action="{{ path('sylius_cart_item_add', {'productId': selectedProduct.id}) }}" method="post">
+                               <tr>
+                              <td colspan="2">{{ form_row(form.quantity)}}</td><td></td>
+                                   <td>{{ form_widget(form._token) }}</td>
+                                   <td><input type="submit" value="Add to cart" class="btn btn-sm btn-outline
+                                   btn-success "></td>
+
+                               </tr>
+                           </form>
+                        </table>
+
+
+                   <hr />
+                   <h6><strong>Sold by :Nimikiddies.com</strong></h6>
+               </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+
+             <!-- /.panel-heading -->
+             <div class="panel-body">
+                <!-- Nav tabs -->
+                	<ul class="nav nav-tabs">
+                        <li><a href="#about" data-toggle="tab">About</a></li>
+
+                        <li class="active"><a href="#description" data-toggle="tab">Details</a>
+                        </li>
+                    </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="about">
+                        <h4>about Tab</h4>
+                        <p>
+                            {{  selectedProduct.about | nl2br }}
+                        </p>
+                        </div>
+                    <div class="tab-pane fade in active" id="description">
+                        <h4>details Tab</h4>
+                        <p>
+                           This product belongs to :  {{ selectedProduct.group.category.department.name |title }}<br />
+                            Category : {{ selectedProduct.group.category.name |title }}<br />
+                            Group:{{ selectedProduct.group.name |title }}<br />
+                            Gender:<br />
+                            Measurement:<br />
+                            Availability:  {{  selectedProduct.stock  }}<br />
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-sm-12" >
+        {% if similarProducts is defined %}
+            <div class="row">
+                <div class="col-sm-12" >
+                    <h3>Similar Products</h3>
+                    <div id="similarProducts" class="owl-carousel">
+
+                        {% for product in similarProducts %}
+                            <div class="thumbnail carouselProducts">
+                                <a href="{{ path('brows product',{'id': product.id}) }}">
+                                    <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
+
+                                <div class="carouselProductsCaption">
+                                    <div class="prodPrice">{{ product.price }}</div>
+                                    <div class="prodTitle">{{ product.name }}</div>
+                                </div>
+                                </a>
+                            </div>
+
+                        {%  endfor %}
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12" >
+        {% if customersChoiceProducts is defined %}
+            <div class="row">
+                <div class="col-sm-12" >
+                    <h3>Customers Choice</h3>
+                    <div id="customersChoiceProducts" class="owl-carousel">
+
+                        {% for product in customersChoiceProducts %}
+                            <div class="thumbnail carouselProducts">
+                                <a href="{{ path('brows product',{'Id': product.id}) }}">
+                                    <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
+
+                                <div class="carouselProductsCaption">
+                                    <div class="prodPrice">{{ product.price }}</div>
+                                    <div class="prodTitle">{{ product.name }}</div>
+                                </div>
+                                </a>
+                            </div>
+                        {%  endfor %}
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+    <div class="row">
+        <div class="col-sm-12" >
+            {% if sponsoredProducts is defined %}
+                <div class="row">
+                    <div class="col-sm-12" >
+                        <h3>Sponsored Products</h3>
+                        <div id="sponsoredProducts" class="owl-carousel">
+
+                            {% for product in sponsoredProducts %}
+                                <div class="thumbnail carouselProducts">
+                                    <a href="{{ path('brows product',{'id': product.id}) }}">
+                                        <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
+
+                                    <div class="carouselProductsCaption">
+                                        <div class="prodPrice">{{ product.price }}</div>
+                                        <div class="prodTitle">{{ product.name }}</div>
+                                    </div>
+                                    </a>
+                                </div>
+                            {%  endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

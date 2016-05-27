@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+   {% block menu %}
+	   <li> <a href={{ path('home')}}><i class="fa fa-home"></i> <strong>Home</strong> </a></li>
+	   <li><a href={{ path('service')}}><strong>Services</strong></a></li>
+	   <li> <a href={{ path('news')}}><i class="fa fa-about"></i><strong>News</strong></a> </li>
+	   <li><a href={{ path('about')}}>  <i class="fa fa-about"></i><strong> About</strong></a> </li>
+	   <li class="active"> <a href={{ path('faq')}}> <i class="fa fa-about"></i><strong> FAQ</strong> </a>  </li>
+	   <li> <a href={{ path('contact')}}> <i class="fa fa-contact"></i><strong> Contact Us</strong></a> </li>
+   {% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block badge %}
+	<div id="contactImage"><img src="{{ asset('images/banners/faq.png') }}" width="100%" height="200px"/> </div>
+{% endblock %}
+{% block content %}
+
+<div class="col-sm-7 col-sm-push-1">
+	<div class="panel">
+		<h2 class="panel-heading">Do you have a question ?
+			<button type="button" data-toggle="collapse" aria-expanded="false" data-target="#askquestion" aria-controls="askquestion"
+					 value="" class="btn btn-danger btn-bg"><h3>Ask It</h3>
+			</button>
+		</h2>
+
+
+		    <div class="collapse panel panel-primary" id="askquestion">
+
+					{{ include('default/_form.html.twig') }}
+			</div>
+	</div>
+	<div class="panel panel-default">
+        <h2 class="panel-heading"> Answered Questions</h2>
+		<div class="panel-body">
+			<ol>
+				<li><h3>Which university does Myadmissionlink Educational represents?</h3>
+				<ul>
+					<li>European University Lefke, Cyprus</li>
+					<li>Texila America University, South America</li>
+					<li>Girne America University, Turkey</li>
+					<li>Ukhta State Technical University, Russia</li>
+					<li>And lots more...</li>
+
+				</ul>
+
+				</li>
+
+				<li><h3 class="header">What are the academic requirements to study abroad for Undergraduate Admission programe </h3>
+
+					<ul>
+						<li>International passport</li>
+						<li>O level result</li>
+						<li>Completed Application Form</li>
+						<li>Medical Report</li>
+						<li>Sponsor Letter</li>
+						<li>Letter of purpose</li>
+					</ul>
+
+				</li>
+
+				<li><h3>What are the academic requirements to study abroad for Postgraduate programs </h3>
+
+					<ul>
+						<li>International Passport</li>
+						<li>Bsc Certificate</li>
+						<li>Completed Application Form</li>
+						<li>Medical Report</li>
+					</ul>
+
+				</li>
+			</ol>
+		</div>
+	</div>
+
+</div>
+
+	<div class="col-sm-3 col-sm-push-2"><img src="{{ asset('images/ijmbadmissions2.gif') }}"/></div>
+{% endblock %}

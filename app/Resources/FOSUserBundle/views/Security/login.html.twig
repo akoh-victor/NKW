@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active"><a href="#"><strong>Login</strong></a></li>
+    </ol>
+        {% trans_default_domain 'FOSUserBundle' %}
+
+        {% block fos_user_content %}
+
+            <div class="col-sm-6" >
+
+                <div class="login-panel panel panel-default">
+
+                    {% if error %}
+                    <div class="panel-danger" xmlns="http://www.w3.org/1999/html">
+                        <h3 class="panel-heading">
+                            {{ error.messageKey|trans(error.messageData,
+                            'security') }}
+                        </h3>
+                    </div>
+
+                    {% else %}
+                        <h3 class="panel-heading"> Sign In </h3>
+                    {% endif %}
+                    <div class="panel-body">
+
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="username">User name</label>
+                                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"
+                                           class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="_password" required="required" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                <input type="checkbox" id="remember_me" name="_remember_me"  value="on" />
+                                <label for="remember_me">Remember Me</label>
+                               {% if error %}
+                                    <p>Did you forget your password ? <a href="{{ path('fos_user_resetting_request') }}">
+                                           <strong> Request </strong></a> for a new one</p>
+                               {% endif %}
+                                </div>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                <button type="submit" class="btn btn-lg btn-outline btn-info btn-block">Login</button>
+                            </fieldset>
+                        </form>
+                    </div>
+            </div>
+            </div>
+            <div class="col-sm-6" >
+                    <div class="login-panel panel panel-default">
+
+                        <div style="text-align:center;  padding: 50px;" >
+
+                            <h1>New to Nimi kiddies ?</h1>
+
+
+                            <h2>Get Started now !!! </h2>
+                            <h3>Its easy and fun all the way <a><i class="fa fa-smile-o fa-fw"></i></a></h3>
+                            <br />
+
+                            <fieldset style="text-align:center; ">
+                                <a href="{{ path('customer_registration') }}" class="btn btn-lg btn-outline btn-success " >Register !!!</a>
+                            </fieldset>
+                          </div>
+                    </div>
+            </div>
+        {% endblock fos_user_content %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
+
+<table>
+    <tr>
+        <td> {{ form_label(form.firstName) }}</td>
+        <td>{{ form_label(form.lastName) }}</td>
+    </tr>
+    <tr>
+        <td class="form-control" >{{ form_widget(form.firstName) }}</td>
+        <td class="form-control">{{ form_widget(form.lastName) }}</td>
+    </tr>
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username) }}
+
+         {{ form_errors(form.username) }}
+
+
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+
+    {{ form_errors(form.email) }}
+
+
+        {{ form_label(form.plainPassword.first) }}
+        {{ form_widget(form.plainPassword.first) }}
+
+    {{ form_errors(form.plainPassword.first) }}
+
+        {{ form_label(form.plainPassword.second) }}
+        {{ form_widget(form.plainPassword.second) }}
+
+    {{ form_errors(form.plainPassword.second) }}
+
+
+    <button class="btn-large waves-effect waves-light" type="submit" name="action">
+        {{ 'registration.submit'|trans }}
+        <i class="material-icons">send</i>
+    </button>
+</table>
+{{ form_end(form) }}

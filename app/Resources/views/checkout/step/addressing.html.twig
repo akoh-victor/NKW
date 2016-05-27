@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<div class="page-header">
+    <h1> <small>Please update your address</small></h1>
+</div>
+
+    {{ form_start(form) }}
+
+    {{ form_errors(form.billingAddress) }}
+     {{ form_label(form.billingAddress) }}
+    {{ form_widget(form.billingAddress) }}
+
+
+    {{ form_errors(form.contactAddress) }}
+    {{ form_label(form.contactAddress) }}
+    {{ form_widget(form.contactAddress) }}
+
+    {{ form_errors(form.state) }}
+    {{ form_label(form.state) }}
+    {{ form_widget(form.state) }}
+
+    {{ form_errors(form.city) }}
+    {{ form_label(form.city) }}
+    {{ form_widget(form.city) }}
+
+
+
+
+
+    <div class="form-actions">
+        <a href="{{ path('sylius_cart_summary') }}" class="btn btn-large">back</a> &nbsp;
+        <input type="submit" class="btn btn-primary btn-large" value="continue" />
+    </div>
+    {{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

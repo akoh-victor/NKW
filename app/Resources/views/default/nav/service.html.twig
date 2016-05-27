@@ -1,0 +1,222 @@
+{% extends 'base.html.twig' %}
+                      {% block menu %}
+                          <li> <a href={{ path('home')}}><i class="fa fa-home"></i> <strong>Home</strong> </a></li>
+                          <li class="active"><a href={{ path('service')}}><strong>Services</strong></a></li>
+                          <li> <a href={{ path('news')}}><i class="fa fa-about"></i><strong>News</strong></a> </li>
+                          <li><a href={{ path('about')}}>  <i class="fa fa-about"></i><strong> About</strong></a> </li>
+                          <li> <a href={{ path('faq')}}> <i class="fa fa-about"></i><strong> FAQ</strong> </a>  </li>
+                          <li> <a href={{ path('contact')}}> <i class="fa fa-contact"></i><strong> Contact Us</strong></a> </li>
+                       {% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block badge %}
+<div id="contactImage"><img src="{{ asset('images/banners/services.jpg') }}" width="100%" height="200px"/> </div>
+{% endblock %}
+
+{% block content %}
+<div class="container panel panel-default">
+
+    <div class="col-xs-12 col-sm-7 col-md-8">
+        <div class="clear-fix"></div>
+          <h2>Services We Render</h2>
+            <p>
+                MEC partners with a great deal of universities accross the world viz:
+                USA,UK,CANADA,CYPRUS,AUSTRALIA,TURKEY,RUSSIA,SOUTH AFRICA and lots more for easy admission and visa
+                processing to study in our client's choice of university. Note worthy is that
+                we enjoy 98% admission and visa success rate.
+            </p>
+             <h2 class="h2-line">Services List</h2>
+        <div class="row service">
+            <div class="col-xs-12 col-sm-3 col-md-4">
+                <div class="thumbnail">
+                 <img src="{{ asset('images/admissions.jpg') }}" alt="" width="100%" height="200px"  />
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                <h4>Admission Processing</h4>
+                <p> Study abroad processing seems a herculean task without
+                    proper documentation and right selection of course
+                    etc. At MEC, our team of experts relieve you the
+                    burden and disappointment of admission denial by
+                    assisting you with admission application using our
+                    expertise , link and contact to make the processing
+                    successful  at the nick of time.
+
+                    We assist you get admission into the following
+                    countries and also assist in securing scholarship
+                    where applicable:
+
+                    United Kingdom,
+                    USA,
+                    Australia,
+                    Germany,
+                    Ghana,
+                    Canada,
+                    Cyprus,
+                    Benin Republic
+                    Canada,
+                    South Africa,
+                    UAE,
+                    Mauritus,
+                    Russia
+                    AND LOTS MORE.. <br />
+              </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-4">
+                <img src="{{ asset('images/counsel.png') }}" width="100%" height="200px" alt=""  class="thumbnail" />
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                <h4>Counseling Services </h4>
+                <p>
+                    Counselling is a helping relationship. At MEC our
+                    trained staffs help in career counselling,  course
+                    and country selection putting into consideration the
+                    latent skill, aspiration, intellectual capacity and
+                    budget of our clients. The good news is we offer this
+                    service at zero cost. Feel free to call on us any time
+                    if need be.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-4">
+                <img src="{{ asset('images/visa.jpg') }}" alt="" width="100%" height="200px" class="thumbnail" />
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                <h4>Visa Processing Guidance</h4>
+                <p>We offer you a time-tested and cost effective
+                    process that enables quick admission and smooth
+                    immigration processes. Our team of experts with great
+                    deal of knowledge about likely visa questions will
+                    prep you ahead of visa interview thus giving you ample
+                    chance of successful visa application in your selected
+                    country.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-4">
+                <img src="{{ asset('images/serv_3.jpg') }}" alt="" width="100%" height="100%" class="thumbnail" />
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                <h4>Programs, School Selection and Application</h4>
+                <p>We have listening ears to understand the need
+                    and dream of our clients as per school and career
+                    selection. Consequently, we use our expertise in
+                    turning your dreams to reality through appropriate
+                    career, school selection and placement.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-4">
+                <img src="{{ asset('images/pb.jpg') }}" alt=""  width="100%" height="100%"  class="thumbnail" />
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-8">
+                <h4>Pre-departure Briefing</h4>
+                <p>This includes information about weather, currency,
+                    language, pick up at airport, flight booking,
+                    accommodation and registration. At MEC, we ensure our
+                    clients are not stranded or devoid of any
+                    information that will make their journey, registration
+                    and settling in the new country easy.
+                </p>
+            </div>
+        </div>
+        <h2 class="h2-line">Meet Our Partners</h2>
+        <div class="partners">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-4">
+                    <img src="{{ asset('images/partners/girne.png') }}" alt=""  width="100%" height="100%"  class="thumbnail" />
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    <h4>Girne American University</h4>
+                    <p>GAU is the oldest university in the island of Cyprus, our location in Girne /Kyrenia,
+                        North Cyprus has links with the past.GAU also have campuses in Turkey,America United Kingdom,
+                      </p> <div id="readgau" class="collapse"> <p>Hong Kong.In keeping with the legacy of our rich history we are confident that our current international
+                        educational environment is second to none. Our campus is a garden square of 35 acres, which combines fine
+                        traditional elements with a beautiful environment and state  of  the  art technology. You will have
+                        the opportunity to balance your studies with healthy recreation both on and off campus. You will find friends
+                        all around the world to talk to, to study with and share the multitude of joys experiences of our university life.</p></div>
+                    <p><a href="#readgau" data-toggle="collapse">Read more ...</a> </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-4">
+                    <img src="{{ asset('images/partners/eul.png') }}" alt=""  width="100%" height="100%"  class="thumbnail" />
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    <h4>European University Lefke</h4>
+                    <p>European University Cyprus developed out of Cyprus College, which was founded in 1961 by Ioannis Gregoriou.
+                        The purpose was to provide a well-rounded education of high caliber,
+                  </p> <div id="readeul" class="collapse"><p>  so that students would acquire the necessary academic
+                        and practical knowledge in their fields of study.</p></div>
+                    <p><a href="#readeul" data-toggle="collapse">Read more...</a> </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-4">
+                    <img src="{{ asset('images/partners/tau.jpg') }}" alt=""  width="100%" height="100%"  class="thumbnail" />
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    <h4>Texila American University</h4>
+                    <p>Texila American University (TAU), one of the best Caribbean Medical Schools is located in Guyana,
+                        the only English-speaking country in South America.
+                        TAU offers Health Science programs with a high level of professionalism and exactness. </p>
+
+                    <h4>We partner with lots of other universities, both local and international. <a href={{ path('contact')}}>
+                            Contact us today for more details</a></h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-4">
+        <h2>Application Process</h2>
+        <ol class="process">
+            <li> <strong>Arrange an Appointment with MEC Staff</strong><br/>
+                Meeting with an experienced MEC counsellor will allow
+                you to discuss your options and choose the right fit for you.  </li>
+
+            <li>  <strong>Apply for Admissions</strong><br/>
+                Once you have decided on your university choice, our counsellor will ask
+                you to provide the necessary documents to apply for admissions.</li>
+
+            <li> <strong>Receive your Offer Letter</strong><br/>
+                An offer letter will be issued by the university if you have met the criteria for
+                admissions. MEC will keep in regular contact with you and with your
+                institution of choice.</li>
+
+            <li><strong>Accept your Offer</strong><br/>
+                Once you have decided to accept your offer, MEC staff can help you notify
+                the institution and pay any required deposit in both a secure and timely
+                manner.</li>
+
+            <li><strong>Apply for your Visa</strong><br/>
+                Our counsellors are trained to give you expert advice on the visa process.
+                They will guide you on preparing your file and check your documents
+                before they are submitted.
+                *In-complete documents will cause delays, and sometimes visa rejections*</li>
+
+            <li><strong>Prepare for your Overseas Studies</strong><br/>
+                Now your visa's filed you will need to start  making preparations for living
+                abroad, including booking accommodation. 	MEC staff can assist you
+                throughout and will hold pre-departure briefings for students.</li>
+        </ol>
+        <h2 class="h2-line">General Admission Requirements</h2>
+        <p>Please note that required documents for admission processing varies from schools and countries</p>
+        <ul class="process" >
+            <li> Certified O'level result-WAEC,NECO,GCE</li>
+            <li>Data page of international passport</li>
+            <li>Completed application form</li>
+            <li>Medical fitness certificate</li>
+            <li>Bsc/Msc certificate/transcript for postgraduates applicant</li>
+            <li>Sponsor letter</li>
+            <li>English proficiency exam result-TOEFL,IELTS,GRE etc</li>
+        </ul>
+    </div>
+
+</div>
+{% endblock %}

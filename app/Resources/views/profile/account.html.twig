@@ -1,0 +1,133 @@
+
+    <div class="profile">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="/profile/account">Account</a></li>
+            <li role="presentation"><a href="/profile/activities">Activities</a></li>
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div >
+            <div class="col-sm-9 well-lg" >
+                <div class="panel panel-default">
+                    {% if link ==  "personalInfo" %}
+                           <div class="panel panel-heading">
+                               Personal Information
+                                   <a href="{{ path ("fos_user_profile_edit") }}" style="color: #222222"
+                                      class="btn-default btn-circle btn-outline pull-right">
+                                          <strong>Update Account</strong></a>
+
+                           </div>
+                        <div style ="background-color:lemonchiffon ;border:1px dashed orange ;padding:3px">
+                            Account Information
+                        </div>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>First Name </td><td>{{ user.firstname |title}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Last Name </td><td>{{ user.lastname |title}} </td>
+                                </tr>
+                                <tr>
+                                    <td>User Name </td><td>{{ user.username |title}} </td>
+                                </tr>
+                                <tr>
+                                    <td>Password </td><td><a href="{{ path('fos_user_change_password') }}">Change
+                                            Password</a>
+
+
+
+                                    </td>
+                                </tr>
+
+                            </table>
+                        <div style ="background-color:lemonchiffon ;border:1px dashed orange ;padding:3px">
+                            Email/ Contact Information
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <td>Email </td><td>{{ user.email }} </td>
+                            </tr>
+                            <tr>
+                                <td>Phone </td><td>{{ user.phone }} </td>
+                            </tr>
+
+                        </table>
+                    {% endif %}
+
+                    {% if link ==  "addresses" %}
+                    <div class="panel panel-heading">Addresses<a href="{{ path("fos_user_profile_edit") }}"
+                                                                 style="color: #222222" class="btn-default btn-circle
+                                                                 btn-outline  pull-right">
+                                <strong>Update Account</strong></a></div>
+
+                        <table class="table table-default">
+
+                                <tr>
+                                    <td><strong>Primary Shipping address:</strong><br />
+                                        Your main shipping address for purchase
+                                    </td>
+                                    <td> {% if (user.billingaddress  )   == "" %}
+                                            Please update your billing address
+                                        {% endif %}
+                                        {{ user.billingaddress }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Registration address:</strong><br />
+                                        Your main contact address
+                                    </td>
+                                    <td>
+                                        {% if ( user.contactaddress ) == "" %}
+                                            Please update your contact address
+                                        {% endif %}
+                                        {{ user.contactaddress }}
+                                    </td>
+                                </tr>
+                        </table>
+
+
+                        <div class="panel-body">
+
+                            <div style ="background-color:lemonchiffon ;border:1px dashed orange ;padding:3px">
+                                <h3 class="pull-right"><small>About addresses</small></h3>
+
+                                <strong>Registration address -</strong> This is your main contact address, so its important to keep it up to date and accurate.<br />
+                                <strong>Primary Shipping address -</strong> This is where you would like to receive the item u purchased.
+                            </div></div>
+
+                    {% endif %}
+
+                    {#{% if link ==  "communication" %}
+                    <div class="panel panel-heading">
+                        Communication Preference
+                    </div>
+                    {% endif %}#}
+                </div>
+
+            </div>
+            <div class="clear-fix"></div>
+            <div class="col-sm-3" >
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav nav-pills nav-stacked" id="side-menu">
+                        <div class="list-group-info">
+                            <h4 class="list-group-item">My Account Information</h4>
+                        </div>
+
+                            <li{% if link ==  "personalInfo" %} class ="active"{% endif %}
+                                    ><a href="/profile/account/personalInfo">
+                                    Personal Information</a></li>
+                            <li{% if link ==  "addresses" %} class ="active"{% endif %}
+                                    ><a href="/profile/account/addresses">Addresses</a></li>
+                           {# <li{% if link ==  "communication" %} class ="active"{% endif %}
+                                    ><a href="/profile/account/communication">Communication
+                                    Preference</a>
+                            </li>#}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+

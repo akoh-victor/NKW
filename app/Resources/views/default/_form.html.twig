@@ -1,0 +1,23 @@
+
+ {% if form is defined %}
+  {{ form_start(form) }}
+
+  {{ form_errors(form) }}
+  {{ form_widget(form) }}
+
+  {{ form_end(form) }}
+ {% endif %}
+
+ {#{% block form_errors %}
+  {% spaceless %}
+
+  {% if errors|length > 0 %}
+   <ul class="msg err">
+    {% for error in errors %}
+     <li>{{ error.message }}</li>
+    {% endfor %}
+   </ul>
+  {% endif %}
+
+   {% endspaceless %}
+ {% endblock form_errors %}#}

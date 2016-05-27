@@ -1,0 +1,74 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{{form_start(form, {'method': 'POST', 'attr':{'class': 'register'}})}}
+<table class="-git">
+
+    <tr>
+        <td > {{ form_label(form.firstName) }}</td>
+        <td >{{ form_label(form.lastName) }}</td>
+    </tr>
+    <tr>
+        <td > {{ form_errors(form.firstName) }}</td>
+        <td > {{ form_errors(form.lastName) }}</td>
+    </tr>
+    <tr>
+        <td  >{{ form_widget(form.firstName) }}</td>
+        <td >{{ form_widget(form.lastName) }}</td>
+    </tr>
+
+
+    <tr>
+        <td> {{ form_label(form.username) }}</td>
+        <td>{{ form_label(form.email) }}</td>
+    </tr>
+    <tr>
+        <td > {{ form_errors(form.username) }}</td>
+        <td > {{ form_errors(form.email) }}</td>
+    </tr>
+    <tr>
+        <td  >{{ form_widget(form.username) }}</td>
+        <td >{{ form_widget(form.email) }}</td>
+    </tr>
+
+    <tr>
+        <td > {{ form_label(form.plainPassword.first) }}</td>
+        <td >{{ form_label(form.plainPassword.second) }}</td>
+    </tr>
+    <tr>
+        <td > {{ form_errors(form.plainPassword.first) }}</td>
+        <td > {{ form_errors(form.plainPassword.second) }}</td>
+    </tr>
+    <tr>
+        <td  >{{ form_widget(form.plainPassword.first) }}</td>
+        <td >{{ form_widget(form.plainPassword.second) }}</td>
+    </tr>
+
+    <tr>
+        <td > {{ form_label(form.phone) }}</td>
+    </tr>
+    <tr>
+        <td > {{ form_errors(form.phone) }}</td>
+    </tr>
+    <tr>
+        <td  >{{ form_widget(form.phone) }}</td>
+    </tr>
+
+
+    <tr>
+        <td > {{ form_label(form.receivePromo) }}</td>
+        <td  >{{ form_widget(form.receivePromo) }}</td>
+    </tr>
+
+    <tr>
+        <td colspan="2"> {{ form_errors(form.receivePromo) }}</td>
+    </tr>
+    <tr>
+        <td colspan="2" > <button class="btn btn-md btn-outline btn-success btn-block"  type="submit" name="action">
+                {{ 'registration.submit'|trans }}
+            </button></td>
+    </tr>
+
+
+</table>
+{{ form_end(form) }}

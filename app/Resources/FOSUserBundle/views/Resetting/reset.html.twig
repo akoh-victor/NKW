@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+
+{% block nav %}{% endblock %}
+
+{% block fos_user_content %}
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active"><a href="#"><strong>Reset</strong></a></li>
+    </ol>
+
+    {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+{% endblock fos_user_content %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+
+
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active"><a href="{{ path('search') }}"><strong>Search</strong></a></li>
+    </ol>
+
+    <div class="row product-filter">
+
+
+
+
+        <div class="link">
+            {% if pagination.getTotalItemCount  %}
+            <div style="padding-right: 4em" class="pull-right">
+                <p>Total items for search {{ pagination.getTotalItemCount }}</p>
+            </div>
+            <ul>
+                {% for product in pagination  %}
+                    <li>
+                        <a href="/brows/{{ product.id }}">
+                            <span>  <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="height:290px"></span>
+                            <h2 class="title">
+                                <span class="brand">{{ product.brand.name |title}}</span>
+                                <span class="name">{{ product.name|title }}</span>
+                            </h2>
+                            <span class="price-box">
+                                <span>
+                                    <span data-currency-iso="NGN">
+                                    </span>
+                                    <span data-price="{{ product.price }}">{{ product.price |price
+                                        }}</span>
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+                {% else %}
+               <div style="width: 100%" class="badge badge-info">
+                   <h2>Empty search result</h2>
+                   <p>No product found for your search  criteria. </p>
+               </div>
+            {% endif %}
+        </div>
+
+    </div>
+    {# display navigation #}
+    <div style="" class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+
+{% endblock %}

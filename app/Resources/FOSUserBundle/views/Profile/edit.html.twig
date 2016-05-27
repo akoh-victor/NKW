@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block nav %}{% endblock %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active"><a href="#"><strong>Password Already Requested</strong></a></li>
+    </ol>
+{% block fos_user_content %}
+{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock fos_user_content %}
+{% endblock %}

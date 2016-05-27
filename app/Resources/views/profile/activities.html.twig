@@ -1,0 +1,94 @@
+
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" ><a href="/profile/account">Account</a></li>
+            <li role="presentation" class="active"><a href="/profile/activities">Activities</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+
+            <div >
+                <div class="col-sm-9 well-lg" >
+                    <div class="panel panel-default">
+
+
+                        {% if link ==  "order" %}
+
+                            <div class="form-horizontal">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>product</th>
+                                        <th>quantity</th>
+                                        <th><span class="pull-right">unit price</span></th>
+                                        <th><span class="pull-right">line total</span></th>
+                                    </tr>
+                                    </thead>
+
+                                    {% for order in orders %}
+                                        {% for item in order.items %}
+                                    <tbody>
+                                            {% set product = item.product %}
+                                            <tr>
+                                                <td>{{ loop.index }}</td>
+
+                                                <td>
+                                                    <p>{{ product }}</p>
+                                                </td>
+                                                <td>{{ item.quantity }}</td>
+                                                <td><span class="pull-right"> {{ item.unitPrice }} </span> </td>
+                                                <td> <span class="pull-right">{{ item.total }}</span></td>
+
+                                            </tr>
+                                        {% endfor %}
+
+                                        <tr style="border-bottom: solid thin seagreen; background-color: #d8d8d8">
+                                            <td colspan="4"></td><td colspan="2">
+                                              <span class="pull-right"> <strong>Total</strong>: {{ order.total }} </span>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom: solid thin seagreen; background-color: #d8d8d8">
+                                            <td colspan="4"></td><td colspan="2">
+                                                <span class="pull-right"> <strong>Order Number</strong>: {{  order.number
+                                                    }} </span>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom: solid thin seagreen; background-color: #d8d8d8" >
+                                            <td colspan="4"></td><td colspan="2">
+                                                <span class="pull-right"> <strong>Order State</strong>: {{  order.state
+                                                    }} </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="clearfix"></tr>
+                                        </tbody>
+                                    {% endfor %}
+
+                                </table>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="clear-fix"></div>
+                <div class="col-sm-3" >
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav nav-pills nav-stacked" id="side-menu">
+                            <div class="list-group-info">
+                                <h4 class="list-group-item">My Activities</h4>
+                            </div>
+{#
+                            <li{% if link ==  "cart" %} class ="active"{% endif %}
+                                    ><a href="/profile/activities/cart">
+                                    Cart Summary</a></li>#}
+                            <li{% if link ==  "order" %} class ="active"{% endif %}
+                                    ><a href="/profile/activities/order">Order History</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+

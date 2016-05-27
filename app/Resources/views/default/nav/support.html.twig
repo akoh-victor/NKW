@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+                      {% block menu %}
+                          <li> <a href={{ path('home')}}><i class="fa fa-home"></i> <strong>Home</strong> </a></li>
+                          <li><a href={{ path('service')}}><strong>Services</strong></a></li>
+                          <li> <a href={{ path('news')}}><i class="fa fa-about"></i><strong>News</strong></a> </li>
+                          <li><a href={{ path('about')}}>  <i class="fa fa-about"></i><strong> About</strong></a> </li>
+                          <li> <a href={{ path('faq')}}> <i class="fa fa-about"></i><strong> FAQ</strong> </a>  </li>
+                          <li class="active"> <a href={{ path('contact')}}> <i class="fa fa-contact"></i><strong> Contact Us</strong></a> </li>
+                       {% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block badge %}
+<div id="contactImage"><img src="{{ asset('images/banners/contactusbanner.jpg') }}" width="100%" height="200px"/> </div>
+{% endblock %}
+
+{% block content %}
+<div class="container panel panel-default">
+<div class="col-md-6 col-md-offset-1">
+<div class="left">
+<h4>Our support team is ready to assist you in actualizing your goals.</h4>
+<!--google map -->
+    <h2>Contact us via this form</h2>
+
+    {% if form is defined %}
+<div class="well">
+
+        {{ form_start(form) }}
+
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+
+        {{ form_end(form) }}
+</div>
+    {% endif %}
+
+
+</div>
+</div>
+<div class="col-md-4 ">
+	<div class="panel">
+        <div class="rihhght">
+            <h2>Contact Details</h2>
+
+            <p>Need help? We will be happy to hear from you. <br />
+                For contacting us please use our contact page or the email and phone info below.</p>
+            <p><strong>Office</strong> : +234-8114551455<br />
+                <strong>Cell</strong> : +234-7034386541<br />
+                <strong>Email</strong> : email@myadmissionlink.com</p>
+            <h2>Email Support</h2>
+            <p>
+                <strong>Info</strong> : info@myadmissionlink.com<br />
+                <strong>Technical</strong>: support@myadmissionlink.com<br />
+                <strong>Jobs</strong> : jobs@myadmissionlink.com<br />
+            </p>
+            <h2>Office Directions</h2>
+            <p>  <strong> Kwara Office Address</strong>
+                <br/>5, Oja Iya Street, off Taiwo Road Opposite Ostrich Bakery ,
+                      <br /> Ilorin,Kwara State
+            </p><br />
+
+                <p> <strong> Lagos Office Address</strong>
+                    <br/>7,Oyinlola Street,Akowonjo-Egbeda,Lagos State<br /><br /></p>
+            <h2>Media</h2>
+            <p> <strong>Facebook</strong><br />
+               <span>
+                   <a href="http://www.facebook.com/myadmissionlink" target="_blank">
+                   <img src="{{ asset('images/facebook.png') }}" alt="facebook"
+                        width="30" height="30" border="0"
+                        class="rss" /> www.facebook.com</a></span>
+            </p>
+            <p> <strong>Twitter</strong><br />
+                <a href="http://www.twitter.com/myadmissionlink" target="_blank">
+                <img src="{{ asset('images/twitter.png') }}" alt="twitter"
+                     width="30" height="30" border="0"
+                     class="rss" />
+                www.twitter.com</a></p>
+            <p> <strong>Whatsapp</strong><br /><a>
+                    <img src="{{ asset('images/whatsapp.jpg') }}" alt="twitter"
+                         width="30" height="30" border="0"
+                         class="rss" />
+                    08058093332</a></p>
+        </div>
+
+
+
+
+
+	</div>
+</div>
+
+
+</div>
+{% endblock %}

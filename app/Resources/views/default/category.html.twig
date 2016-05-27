@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li><a href="{{ path('department',{'id': category.department.id}) }}">{{ category.department.name
+                    }}</a></li>
+        <li><a href="{{ path('category',{'categoryId': category.id}) }}"><strong>{{ category.name|title
+                    }}</strong></a></li>
+    </ol>
+
+
+           {#<table class="table">
+               <tr>
+                   <th>
+                       <strong> Groups :</strong>
+                   </th>
+                   {% for group in category.group %}
+                       <td>
+                           <a href="{{ path('group',{'groupId': group.id }) }}">   {{ group.name |title }}</a>
+                       </td>
+                   {% endfor %}
+               </tr>
+
+           </table>#}
+
+
+
+
+
+    <div class="col-md-2">
+        <ul class="parent">
+            <h2>{{ category.name |capitalize }}</h2>
+            <h4>Shop By Group </h4>
+            {% for group in category.group %}
+                <li>  <a href="{{ path('group',{'groupId': group.id }) }}">{{ group.name |title }}</a><br /></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div class="col-sm-10">
+        <div  class="row product-filter">
+
+            <div class="row">
+                <strong>Featured Brands</strong>
+                <div id="brands" class="owl-carousel">
+                    {% for group in category.group %}
+                        {% for brand in group.brand %}
+                            <div style="width:auto;  height:55px" class="thumbnail carouselProducts">
+                                <a href="">
+                                    <img src="{{ vich_uploader_asset(brand, 'imageFile') }}" alt="{{ brand
+                                    .name |title }}" style="width:auto;  height:50px">
+                                </a>
+                            </div>
+                        {%  endfor %}
+                    {% endfor %}
+
+                </div>
+            </div>
+                <div class="link">
+                        <ul>
+                            {% for product in pagination %}
+                                        <li >
+                                          <a href="{{ path('brows product',{'id': product.id}) }}">
+                                               <span>  <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="">
+                                               </span>
+                                               <h2 class="title">
+                                                   <span class="brand">{{ product.brand.name |title}}</span>
+                                                   <span class="name">{{ product.name|title }}</span>
+                                               </h2>
+                                                <span class="price-box">
+                                                    <span>
+                                                        <span data-currency-iso="NGN">NGN</span>
+                                                        <span data-price="{{ product.price }}">{{ product.price }}</span>
+                                                    </span>
+                                                </span>
+                                          </a>
+                                        </li>
+                            {% endfor %}
+                        </ul>
+                </div>
+        </div>
+            {# display navigation #}
+            <div class="">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+    </div>
+        <div class="row">
+            <div class="col-sm-12" >
+                {% if customersChoiceProducts is defined %}
+                    <div class="row">
+                        <div class="col-sm-12" >
+                            <h3>Most Popular Products</h3>
+                            <div id="customersChoiceProducts" class="owl-carousel">
+
+                                {% for product in customersChoiceProducts %}
+                                    <div class="thumbnail carouselProducts">
+                                        <a href="{{ path('brows product',{'id': product.id}) }}">
+                                            <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
+                                            <div class="carouselProductsCaption">
+                                                <div class="prodPrice">{{ product.price }}</div>
+                                                <div class="prodTitle">{{ product.name }}</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {%  endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+{% endblock %}

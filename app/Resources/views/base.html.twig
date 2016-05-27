@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+ <head>
+     <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="idealI solutions">
+        <title>{% block title %}Nimi Kiddies World{% endblock %}</title>
+        {% block stylesheets %}
+
+          {% stylesheets filter="scssphp" output="css/app.css"
+              "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
+              "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
+              "%kernel.root_dir%/Resources/assets/css/font.css"
+              "%kernel.root_dir%/Resources/assets/css/admin.css"
+              "%kernel.root_dir%/Resources/assets/css/carousel.css"
+              "%kernel.root_dir%/Resources/assets/css/camera.css"
+              "%kernel.root_dir%/Resources/assets/css/owl.theme.css"
+              "%kernel.root_dir%/Resources/assets/css/chuma.css"
+          %}
+              <link rel="stylesheet" href="{{ asset_url }}" />
+          {% endstylesheets %}
+
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('logo.jpg') }}" />
+
+     {% block javascript %}
+
+
+{% endblock %}
+ </head>
+ <body style="font-family: cursive ">
+  <header>
+  </header>
+  <div class="user-nav">
+      {% set cart = sylius_cart_get() %}
+          <ul>
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                  <li>Hi {{ app.user.username }}!</li>
+              {% else %}
+                  <li>Hi all!</li>
+              {% endif %}
+
+              <li> <a href= "{{ path('contactUs') }}">Contact & Support</a></li>
+          </ul>
+
+
+          <ul class="pull-right">
+              <li>
+                  <a href= "{{ path('showProfileAccount') }}">My Account</a>
+              </li>
+              <li>
+                  <a href= "{{ path('sylius_cart_summary') }}">Cart ({{ cart.totalItems }})</a>
+              </li>
+              <li>
+                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                      <a href= "{{ path('fos_user_security_logout') }}">Logout</a>
+                  {% else %}
+                      <a href= "{{ path('fos_user_security_login') }}">Login</a>
+                  {% endif %}
+              </li>
+              <li>
+                  <a href= "{{ path('customer_registration') }}">Sign Up</a>
+              </li>
+          </ul>
+  </div>
+<div class="container-fluid">
+    {% block header %}
+
+        <div class="top-header">
+            <div class="col-md-2" style="left: 10px;width: 300px;  float: left;">
+                <a href={{ path('home') }} >
+                        <img src="{{ asset('logo.png') }}" alt="Nimi Kiddies"
+                         style="width: 200px"/>
+                </a>
+            </div>
+            <div class="col-md-8">
+            <form action="{{ path('search') }}" method="post">
+                <div class="input-group">
+
+                    <span style="padding: 0; margin: 0" class="input-group-addon">
+                         <select name="scope"  class="form-control-static" >
+                             <option value="0">All Categories</option>
+                             {% for category in categories %}
+                             <option value="{{ category.id }}">{{ category.name }}</option>
+                             {% endfor %}
+                         </select>
+                    </span>
+
+                          <input type="text" name="data" value="
+                          {% if data is defined %}
+                           {{ data }}
+                          {% endif %}
+                          "class="form-control" placeholder="Search for products">
+                    <span class="input-group-btn">
+                        <input type="submit" class="btn btn-default" value="Search">
+                    </span>
+
+                </div>
+            </form>
+            </div>
+            <div class="col-md-2">
+
+
+            </div>
+        </div>
+
+
+        {% block nav %}
+            <div class="deptNav">
+                {% if departments is defined %}
+                    <ul>
+                        {% for department in departments %}
+                            <li ><a href="{{ path('department',{'id': department.id}) }}">{{ department.name |
+                                    title }}<span
+                                            class="caret"></span></a>
+                              <div>
+                                    <div class="col-sm-4">
+                                        <h5><strong>Additional Categories</strong></h5>
+                                    <ul>
+                                        {% for category in department.category %}
+                                            <li><a href="{{ path('category',{'categoryId': category.id}) }}">{{ category.name
+                                                    |title
+                                                    }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    </div>
+
+                                    <div class="col-sm-8">
+
+                                        <a href="{{ path('department',{'id': department.id}) }}">
+                                           <img  src = '{{ vich_uploader_asset(department, 'imageFile') }}' style="height: 100%;width: 100%"/>
+
+                                        </a>
+                                    </div>
+                              </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endblock %}
+
+
+    {% endblock %}
+    <div class="clear-fix"></div>
+</div>
+      <div class="container">
+         {% block body %}
+
+          <div class="row">
+              <div class="col-sm-9">
+              {% block slider %}
+              {% endblock %}
+              </div>
+              <div class="col-sm-3">
+                  {% block ads %}
+                  {% endblock %}
+              </div>
+          </div>
+             <div class="clear-fix"></div>
+          <div class="row">
+              {% block slogan %}
+              {% endblock %}
+          </div>
+          <div class="row">
+              {% block content %}
+              {% endblock %}
+          </div>
+
+      {% endblock %}
+      </div>
+
+
+      <footer>
+          <div class="row">
+                  <div class="col-xs-3">
+                      <h1><small>About Us</small> </h1>
+                      <h1> </h1>
+                      <p>
+                          <a href={{ path('home')}}>Home</a> | <a href={{ path('contactUs')}}>Contact Us</a> |
+                          <br />
+                          <a href="http://www.facebook.com/nimikiddies"><img src="{{ asset('images/rss_4.gif') }}"
+                                                                             alt="facebook"
+                                                                             width="16" height="16" border="0"
+                                                                             class="rss" /></a> <a href="#"><img src="{{ asset('images/rss_2.gif') }}" alt="linkedin"
+                                                                                                                 width="16" height="16" border="0" class="rss" /></a>
+                          <a href="http://www.twitter.com/nimikiddies"><img src="{{ asset('images/rss_3.gif') }}" alt="twiter"
+                                                                            width="16" height="16" border="0" class="rss" /></a>
+                      </p>
+
+                  </div>
+
+              <div class="col-xs-3">
+                  <h1><small>Services</small></h1>
+                  <p>detaild list of services we render</p>
+              </div>
+
+              <div class="col-xs-3">
+                      <h1><small>Contact Us</small></h1>
+                      <p>Office : +234-8114551455</p>
+                      <p>info@nimikiddies.com</p>
+                      <p>jobs@nimikiddies.com</p>
+                      <p>Manned 24hrs a day</p>
+                  </div>
+
+
+                  <div class="col-xs-3">
+                      <h1><small>Office Address</small></h1>
+                      <p>  57, Tombia Extension <br />G.R.A Phase 3,
+                          <br /> Port Harcourt River State
+                      </p>
+                  </div>
+
+          </div>
+      <div>
+          <hr />
+          <p>
+              &copy; 2016 Nimi Kiddies & Parties. All Rights Reserved<br />
+          </p>
+          <p class="pull-right" >
+              This site is developed by Ideal IT Solutions <br />
+              +234(0)8081477456
+          </p>
+      </div>
+      </footer>
+
+
+
+
+
+
+        {% block javascripts %}
+
+        {% javascripts filter="?jsqueeze" output="js/app.js"
+            "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
+            "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
+            "%kernel.root_dir%/Resources/assets/js/carousel.js"
+             "%kernel.root_dir%/Resources/assets/js/camera.min.js" %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+
+            <script>
+                $(document).ready(function() {
+                    $("#newProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 30000,
+                        items : 4,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#sponsoredProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 30000,
+                        items : 4,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#brands").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 30000,
+                        items : 10,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#featuredProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 5,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#similarProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 5,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#customersChoiceProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 6,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#selectedProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 1,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+
+                    $("adverts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:false,
+                        autoPlay: 3000,
+                        items : 1,
+                        itemsDesktop : [1199,1],
+                        itemsDesktopSmall : [979,1],
+
+                        navigation : false
+                    });
+                });
+
+            </script>
+            <script>
+
+                jQuery(function(){
+
+                    jQuery('#selectedProduct').camera({
+                        height: '450px',
+                        width: '450px',
+                        loader: 'none',
+                        time: 99000000,
+                        playPause: false,
+                        pagination: false,
+                        thumbnails: false,
+                        transPeriod	: 10,
+                        portrait:true
+
+                    });
+
+                });
+
+            </script>
+        {% endblock %}
+ </body>
+</html>

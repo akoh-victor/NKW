@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+
+     <div class="row">
+         <div style="margin-left: 70px; margin-right: 70px;" class="panel panel">
+             <div class="panel panel-body">
+              <h2>Get Started With Nimi Kiddies <a><i class="fa fa-heart fa-fw"></i></a></h2>
+                    <div class="col-sm-8">
+                        {% include "FOSUserBundle:Registration:register_customer_content.html.twig" %}
+                    </div>
+                    <div class="col-sm-4">
+                        <h2>Already a user ?</h2>
+                        <fieldset style="text-align:center; ">
+                            <a href="{{ path('fos_user_security_login') }}" class="btn btn-lg btn-outline btn-success ">Sign In</a>
+                        </fieldset>
+                    </div>
+             </div>
+         </div>
+    </div>
+{% endblock %}
