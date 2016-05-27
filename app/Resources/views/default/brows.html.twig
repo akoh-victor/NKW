@@ -33,8 +33,7 @@
               <h4 class=" panel panel-heading">{{ selectedProduct.name | title }}
 
               <span class="pull-right">
-                  <span data-currency-iso="NGN">NGN</span>
-                  <span data-price="{{ selectedProduct.price }}">{{ selectedProduct.price }}</span>
+                  <span data-price="{{ selectedProduct.price }}">{{ selectedProduct.price | price}}</span>
                                             </span>
               </h4>
 
@@ -93,7 +92,12 @@
                             Group:{{ selectedProduct.group.name |title }}<br />
                             Gender:<br />
                             Measurement:<br />
-                            Availability:  {{  selectedProduct.stock  }}<br />
+                            Availability:
+                            {% if selectedProduct.stock %}
+                                Available <br />
+                             {% else %}
+                                 Out of Stock
+                             {% endif %}
                         </p>
                         </div>
                     </div>
@@ -115,7 +119,7 @@
                                     <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
 
                                 <div class="carouselProductsCaption">
-                                    <div class="prodPrice">{{ product.price }}</div>
+                                    <div class="prodPrice">{{ product.price | price}}</div>
                                     <div class="prodTitle">{{ product.name }}</div>
                                 </div>
                                 </a>
@@ -145,7 +149,7 @@
                                     <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
 
                                 <div class="carouselProductsCaption">
-                                    <div class="prodPrice">{{ product.price }}</div>
+                                    <div class="prodPrice">{{ product.price | price}}</div>
                                     <div class="prodTitle">{{ product.name }}</div>
                                 </div>
                                 </a>
@@ -172,7 +176,7 @@
                                         <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
 
                                     <div class="carouselProductsCaption">
-                                        <div class="prodPrice">{{ product.price }}</div>
+                                        <div class="prodPrice">{{ product.price | price}}</div>
                                         <div class="prodTitle">{{ product.name }}</div>
                                     </div>
                                     </a>

@@ -135,23 +135,7 @@ padding: 0px;">
 
 #}
 
-   {# <div class="row">
-        <div id="advart" class="col-sm-6" >
-            <div style="  height:260px" class="thumbnail">
-                <a href="#brows.php?produc_id=">
-                    <img src="../mul_slide/img/owl4.jpg" alt="Advert" style="width:auto;  height:170px">
-                </a>
-            </div>
-        </div>
-        <div id="promo" class="col-sm-6" >
-            <div style="  height:260px" class="thumbnail">
-                <a href="#brows.php?produc_id=">
-                    <img src="../mul_slide/img/owl4.jpg" alt="promo" style="width:auto;  height:170px"></a>
-            </div>
-        </div>
-    </div>
 
-#}
 
             {% if sponsoredProducts is defined %}
                 <div class="row">
@@ -167,7 +151,7 @@ padding: 0px;">
                                             <span class="price-box">
                                                 <span>
                                                     <span data-currency-iso="NGN">NGN</span>
-                                                    <span data-price="{{ product.price }}">{{ product.price }}</span>
+                                                    <span data-price="{{ product.price }}">{{ product.price | price}}</span>
                                                 </span>
                                             </span>
                                         <div class="prodTitle">{{ product.name }}</div>

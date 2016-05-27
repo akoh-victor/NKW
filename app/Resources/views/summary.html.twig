@@ -44,20 +44,20 @@
                              {{ form_row(form.items[loop.index0].quantity, {'attr': {'class': 'center-text'}, 'label': false}) }}
                          </td>
                          <td>
-                             <a href="{{ path('sylius_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
+                             <a href="{{ path('sylius_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger">delete<i class="icon-trash icon-white"></i></a>
                          </td>
                          <td>
-                             {{ item.unitPrice }}
+                             {{ item.unitPrice | price}}
                          </td>
                          <td style="text-align: right">
-                             {{ item.total }}
+                             {{ item.total | price}}
                          </td>
                      </tr>
                  {% endfor %}
                  <tr>
                      <td colspan="6"></td>
                      <td style="text-align: right;">
-                         <strong>Grand total</strong>: {{ cart.total }}
+                         <strong>Grand total</strong>: {{ cart.total |price }}
                      </td>
                  </tr>
                  </tbody>

@@ -10,6 +10,7 @@
             "%kernel.root_dir%/Resources/assets/css/carousel.css"
             "%kernel.root_dir%/Resources/assets/css/admin.css"
             "%kernel.root_dir%/Resources/assets/css/font.css"
+            "%kernel.root_dir%/Resources/assets/css/chuma.css"
             %}
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -129,7 +130,7 @@
 
             <div style="background-color: #424f5a;" class="navbar-default sidebar" role="navigation">
                 <div class="vertical">
-                    <ul class="" id="side-menu">
+                    <ul id="side-menu">
                         {% block sideNav %}
 
                         <li>
@@ -137,16 +138,16 @@
                         </li>
                         <li>*
                                 <a href={{ path('create category')}}> Departments</a>
-                                <ul>
+                                <ul class="parent">
 
                                     {% for department in departments %}
                                         <li><a href="{{ path('edit_department', {'id':  department.id})}}"><i class=""></i><strong>{{ department
                                                     .name  }}</strong></a>
-                                            <ul>
+                                            <ul class="child">
                                                 {% for category in department.category %}
                                                     <li>
                                                         <a href=""><i class=""></i><strong>{{ category.name  }}</strong></a>
-                                                        <ul>
+                                                        <ul class="grandchild">
                                                             {% for group in category.group %}
                                                                 <li>
                                                                     <a href='{{ path('create group product',

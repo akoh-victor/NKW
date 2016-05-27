@@ -8,26 +8,10 @@
     <ol class="breadcrumb">
         <li><strong>You are here :</strong></li>
         <li><a href="{{ path('home') }}">Home</a></li>
-        <li><a href="{{ path('department',{'id': category.department.id}) }}">{{ category
-                .department.name |title }}</a></li>
-        <li class="active"><a href="{{ path('category',{'categoryId': category.id}) }}">{{ category.name |title
-                }}</a></li>
-        <li class="active"><a href="{{ path('group',{'groupId': group.id}) }}"><strong>{{ group.name |title
-                    }}</strong></a></li>
+        <li><a href="{{ path('department',{'id': group.category.department.id}) }}">{{ group.category.department.name |title }}</a></li>
+        <li class="active"><a href="{{ path('category',{'categoryId': group.category.id}) }}">{{ group.category.name |title }}</a></li>
+        <li class="active"><a href="{{ path('group',{'groupId': group.id}) }}"><strong>{{ group.name |title}}</strong></a></li>
     </ol>
-
-    <div class="row product-filter">
-        <div class="col-xs-8">
-            <div style=" margin: 12px 0px; height:290px" class="thumbnail">
-                    <img src="{{ vich_uploader_asset(group, 'logoFile') }}" alt="{{ group.name }}"
-                         style="display:block;max-width:100%;max-height: 100%">
-            </div>
-        </div>
-        <div class="col-xs-4">
-
-        </div>
-    </div>
-
 
 
     <div class="row product-filter">
@@ -40,16 +24,15 @@
                     <ul>
                         {% for product in pagination %}
                                     <li >
-                                      <a href="{{ path('brows product',{'Id': product.id}) }}">
-                                           <span>  <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="height:290px"></span>
+                                      <a href="{{ path('brows product',{'id': product.id}) }}">
+                                           <span>  <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt=""></span>
                                            <h2 class="title">
                                                <span class="brand">{{ product.brand.name |title}}</span>
                                                <span class="name">{{ product.name|title }}</span>
                                            </h2>
                                             <span class="price-box">
                                                 <span>
-                                                    <span data-currency-iso="NGN">NGN</span>
-                                                    <span data-price="{{ product.price }}">{{ product.price }}</span>
+                                                    <span data-price="{{ product.price }}">{{ product.price |price}}</span>
                                                 </span>
                                             </span>
                                       </a>
@@ -77,7 +60,7 @@
                                         <a href="{{ path('brows product',{'Id': product.id}) }}">
                                             <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
                                             <div class="carouselProductsCaption">
-                                                <div class="prodPrice">{{ product.price }}</div>
+                                                <div class="prodPrice">{{ product.price  | price}}</div>
                                                 <div class="prodTitle">{{ product.name }}</div>
                                             </div>
                                         </a>
