@@ -31,16 +31,23 @@ class AppExtension extends \Twig_Extension
 
     public function getGlobals()
     {
+
+        // TODO: setting parameter change this i future cos currently the department can not be more than 8 ?
+
+        // TODO: if the global gender declearation throws error remove it  ?
         $limit = 8;
         $Category = $this->em->getRepository('AppBundle:Category');
         $Department = $this->em->getRepository('AppBundle:Department');
+        $Gender = $this->em->getRepository('AppBundle:Gender');
 
         $departments = $Department->findDepartment($limit);
         $categories = $Category->findAllvisable();
+        $gender = $Gender->findAll();
 
         return array(
             'departments' => $departments,
             'categories' => $categories,
+            'gender'=>$gender
         );
     }
 

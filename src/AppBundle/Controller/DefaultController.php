@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
 
 
 use Symfony\Component\HttpFoundation\Response;
@@ -80,21 +81,28 @@ class DefaultController extends  Controller
      */
     public function departmentAction(Request $request,$id)
     {
-
         $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
+        $Gender = $this->getDoctrine()->getRepository('AppBundle:Gender');
+        $Brand = $this->getDoctrine()->getRepository('AppBundle:Brand');
+
+
         $department = $Department->find($id);
         $departments = $Department->findDepartment('8');;
         $customersChoiceProducts = $Product->mostView('20');
 
+        /*
+         * Receive the requested value from the form as request
+         */
+        $filter = $request;
+
+        $session = $filter->getSession();
+
         $query =  $Product->findDepartmentProduct($department);
 
         $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
+        $pagination = $paginator->paginate($query,$request->query->getInt('page', 1),10,array('distinct' => false));
+
 
         return $this->render('default/department.html.twig', array(
             'pagination' => $pagination,
@@ -118,14 +126,10 @@ class DefaultController extends  Controller
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $customersChoiceProducts = $Product->mostView('20');
 
-        $query = $query =  $Product->findCategoryProduct($category);
+        $query =  $Product->findCategoryProduct($category);
 
         $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            8/*limit per page*/
-        );
+        $pagination = $paginator->paginate($query,$request->query->getInt('page', 1),10,array('distinct' => false));
 
         return $this->render('default/category.html.twig', array(
             'pagination' => $pagination,

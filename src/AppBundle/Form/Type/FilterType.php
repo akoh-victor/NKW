@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 
-class SearchType extends AbstractType
+class FilterType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -25,13 +25,17 @@ class SearchType extends AbstractType
     {
 
         $builder
-            ->add('name', 'text', array('label' => 'Name','attr' => array('class'=>'form-control')))
-
-            ->add('visible','choice',array(
-                'label' => 'Status',
-                'choices' => array('1' => 'Visible', '0' => 'hidden'),
-                'attr' => array('class'=>'form-control')
-            ));
+            ->add('gender','entity', array(
+                'class'=>'AppBundle:Gender',
+                'property'=>'name'
+            ))
+            ->add('brand','entity', array(
+                'class'=>'AppBundle:Brand',
+                'property'=>'name'
+            ))
+            ->add('price', 'money', array('label' => 'Min Price', 'attr' => array('class'=>'form-control')))
+            ->add('price', 'money', array('label' => 'Max Price', 'attr' => array('class'=>'form-control')))
+        ;
     }
 
     /**

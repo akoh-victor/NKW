@@ -33,6 +33,50 @@
             <img  src = '{{ vich_uploader_asset(department, 'imageFile') }}' style="height: 80%;width: 100%"/>
         </div>
 
+
+        <form action="{{ path('department',{'id': department.id}) }}" method="post">
+            <div style="margin: 1em;" class="input-group">
+
+        <table>
+
+            <tr>
+                 <td><select name="gender"  class="form-control-static" >
+                         <option value="0">Choose A Gender </option>
+                         {% for sex in gender %}
+                             <option value="{{ sex.id }}">{{ sex.name }}</option>
+                         {% endfor %}
+                     </select></td>
+                <td>  </td>
+                <td><select name="brand"  class="form-control-static" >
+                        <option value="0">All Brands </option>
+                        {% for category in department.category %}
+                            {% for group in category.group %}
+                                {% for brand in group.brand %}
+                                    <option value="{{ brand.id }}" >{{ brand.name }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endfor %}
+                    </select></td>
+                <td>  </td>
+                <td><label>Min Price <input type="number" name="maxPrice" value="
+                 {% if maxPrice is defined %}
+                           {{ maxPrice }}
+                  {% endif %}
+
+                "/></label></td>
+                <td> <label>Max Price <input type="number"  name="minPrice" value="
+                {% if minPrice is defined %}
+                           {{ minPrice }}
+                  {% endif %}
+                "/></label> </td>
+
+                <td><input type="submit" class="btn btn-default btn-outline" value="Filter"></td>
+            </tr>
+
+        </table>
+          </div>
+           </form>
+
         <div class="row product-filter">
             <div class="header"><strong>Featured Brands</strong></div>
             <div id="brands" class="owl-carousel">
@@ -40,10 +84,8 @@
                     {% for group in category.group %}
                         {% for brand in group.brand %}
                             <div style="width:auto;  height:55px" class="thumbnail carouselProducts">
-                                <a href="">
                                     <img src="{{ vich_uploader_asset(brand, 'imageFile') }}" alt="{{ brand
                                     .name |title }}" style="width:auto;  height:50px">
-                                </a>
                             </div>
                         {%  endfor %}
                     {% endfor %}

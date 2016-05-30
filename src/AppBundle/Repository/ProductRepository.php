@@ -28,18 +28,31 @@ class ProductRepository extends EntityRepository
 
     }
 
-    public function findCategoryProduct($category)
+    public function findCategoryProduct($category,$minPrice=null,$maxPrice=null,$gender=null)
     {
-        return $this
-            ->createQueryBuilder('l')
+        $countgb = $this->createQueryBuilder('1')
+            ->select('count(p)')
+            ->from('AppBundle:Product','p')
+            ->join('p.group', 'g')
+            ->join('g.category', 'c')
+            ->where('c = :category')
+            ->andWhere('p.visible >= :true')
+            ->setParameter('category', $category)
+            ->setParameter('true', 1);
+        $count = $countgb->getQuery()->getSingleScalarResult();
+
+         $query = $this->createQueryBuilder('1')
             ->select('p')
             ->from('AppBundle:Product','p')
             ->join('p.group', 'g')
             ->join('g.category', 'c')
             ->where('c = :category')
+            ->andWhere('p.visible >= :true')
             ->setParameter('category', $category)
-            ->getQuery()
-            ->getResult();
+            ->setParameter('true', 1);
+        $query ->getQuery()
+            ->setHint('knp_paginator.count', $count);
+        return $query;
     }
 
 
