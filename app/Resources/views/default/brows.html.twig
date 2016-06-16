@@ -79,24 +79,22 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane fade" id="about">
-                        <h4>about Tab</h4>
                         <p>
                             {{  selectedProduct.about | nl2br }}
                         </p>
                         </div>
                     <div class="tab-pane fade in active" id="description">
-                        <h4>details Tab</h4>
                         <p>
                            This product belongs to :  {{ selectedProduct.group.category.department.name |title }}<br />
                             Category : {{ selectedProduct.group.category.name |title }}<br />
                             Group:{{ selectedProduct.group.name |title }}<br />
                             Gender:<br />
                             Measurement:<br />
-                            Availability:
+                            Status:
                             {% if selectedProduct.stock %}
                                 Available <br />
                              {% else %}
-                                 Out of Stock
+                                 <P style="color: darkred" >Out of Stock</P>
                              {% endif %}
                         </p>
                         </div>
@@ -107,7 +105,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12" >
-        {% if similarProducts is defined %}
+        {% if similarProducts  %}
             <div class="row">
                 <div class="col-sm-12" >
                     <h3>Similar Products</h3>
@@ -120,7 +118,7 @@
 
                                 <div class="carouselProductsCaption">
                                     <div class="prodPrice">{{ product.price | price}}</div>
-                                    <div class="prodTitle">{{ product.name }}</div>
+                                    <div class="prodTitle">{{ product.name |title }}</div>
                                 </div>
                                 </a>
                             </div>
@@ -137,10 +135,10 @@
 
 <div class="row">
     <div class="col-sm-12" >
-        {% if customersChoiceProducts is defined %}
+        {% if customersChoiceProducts %}
             <div class="row">
                 <div class="col-sm-12" >
-                    <h3>Customers Choice</h3>
+                    <h3>People that viewed this also view these</h3>
                     <div id="customersChoiceProducts" class="owl-carousel">
 
                         {% for product in customersChoiceProducts %}
@@ -150,7 +148,7 @@
 
                                 <div class="carouselProductsCaption">
                                     <div class="prodPrice">{{ product.price | price}}</div>
-                                    <div class="prodTitle">{{ product.name }}</div>
+                                    <div class="prodTitle">{{ product.name  |title}}</div>
                                 </div>
                                 </a>
                             </div>
@@ -164,7 +162,7 @@
 </div>
     <div class="row">
         <div class="col-sm-12" >
-            {% if sponsoredProducts is defined %}
+            {% if sponsoredProducts %}
                 <div class="row">
                     <div class="col-sm-12" >
                         <h3>Sponsored Products</h3>

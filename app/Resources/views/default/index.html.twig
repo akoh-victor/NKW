@@ -2,7 +2,7 @@
 
 
 {% block slider %}
-    <div  style="border: solid   0.09em #2C3E50 ;" id="carousel" class="carousel slide" data-ride="carousel">
+    <div  style="border: solid   0.09em #2C3E50 ;" id="carousel" class="carousel slide visible-sm-inline-block  visible-md-inline visible-lg-block" data-ride="carousel">
         <!-- Indicators -->
     {#    <ol class="carousel-indicators">
             {% for key,badge in badges %}
@@ -44,7 +44,7 @@
     </div>
 {% endblock %}
  {% block ads %}
-     <div class="ads">
+     <div class="ads  visible-md-inline-block visible-lg-block">
              {#<div id="adverts" class="owl-carousel">
                  {% if adverts is defined %}
                      {% for ads in adverts %}#}
@@ -54,7 +54,7 @@
                  {% endif %}
              </div>#}
      </div>
-     <div class="ads-small">
+     <div class="ads-small  visible-md-inline visible-lg-block">
          <img src="{{ asset('motto.png') }}" alt="Helping to achieve"
               style="height:  110%; width: 100%"/>
      </div>
@@ -62,7 +62,7 @@
 
 {% block content %}
 
-<h2 class="small" >Featured Departments</h2>
+<h1 class="small" >Featured Departments</h1>
 
     {% for department in departments %}
 
@@ -72,7 +72,7 @@
                         <img src="{{ vich_uploader_asset(department, 'logoFile') }}" alt="{{ department.name }}"
                              style="height: 30em; width: 38em"></a>
                 </div>
-              <div style=" margin: 0px 0px 50px; font-family: Aleo Regular,Palatino Linotype,Palatino;
+              <div style=" margin: 0px 0px 50px; font-family: cursive;
 margin-left: 0px;
 text-overflow: clip;
 height: 118px;
@@ -98,7 +98,7 @@ padding: 0px;">
                           <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
                           <div class="carouselProductsCaption">
                               <div class="prodPrice">{{ product.price |price }}</div>
-                              <div class="prodTitle">{{ product.name }}</div>
+                              <div class="prodTitle">{{ product.name  |title}}</div>
                           </div>
                         </a>
                     </div>

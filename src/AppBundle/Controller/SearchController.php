@@ -24,11 +24,10 @@ class SearchController extends Controller
     public function SearchProductAction(Request $request)
     {
 
-        $request = $this->getRequest();
-          $data = $request->request->get('data');
+        $data = $request->request->get('data');
         $scope = $request->request->get('scope');
-        echo  trim($data);
-        echo  trim($scope);
+       trim($data);
+       trim($scope);
         $em = $this->getDoctrine()->getManager();
 
 
@@ -37,26 +36,22 @@ class SearchController extends Controller
             $result = $em ->getRepository("AppBundle:Product")->createQueryBuilder('n')
                 ->select('n')
                 ->where('n.name LIKE :data')
-                ->andWhere('n.visible = :yes')
-                ->setParameter('yes',1)
                 ->setParameter('data','%'.$data.'%')
                 ->getQuery()
                 ->getResult();
 
         }elseif($scope>0){
 
-       $result = $em ->getRepository("AppBundle:Product")->createQueryBuilder('n')
-           ->select('n')
-           ->join('n.group', 'g')
-           ->join('g.category', 'c')
-           ->where('n.name LIKE :data')
-           ->andWhere('n.visible = :yes')
-           ->andWhere('c = :scope')
-           ->setParameter('yes',1)
-           ->setParameter('data','%'.$data.'%')
-           ->setParameter('scope',$scope)
-           ->getQuery()
-           ->getResult();
+           $result = $em ->getRepository("AppBundle:Product")->createQueryBuilder('n')
+               ->select('n')
+               ->join('n.group', 'g')
+               ->join('g.category', 'c')
+               ->where('n.name LIKE :data')
+               ->andWhere('c = :scope')
+               ->setParameter('data','%'.$data.'%')
+               ->setParameter('scope',$scope)
+               ->getQuery()
+               ->getResult();
 
         }
 
@@ -69,9 +64,6 @@ class SearchController extends Controller
 
 
         return $this->render('default/search.html.twig', array(
-
-            'data'=>$data,
-            'scope'=>$scope,
             'pagination'=>$pagination
         ));
 

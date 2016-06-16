@@ -96,9 +96,19 @@ class DefaultController extends  Controller
          */
         $filter = $request;
 
-        $session = $filter->getSession();
+            $query =  $Product->findDepartmentProduct($department);
 
-        $query =  $Product->findDepartmentProduct($department);
+
+        if ($request->isMethod('POST')) {
+
+            $minPrice=$filter->get('minPrice');
+            $maxPrice=$filter->get('maxPrice');
+            $gender=$filter->get('gender');
+            $brand=$filter->get('brand');
+            $query =  $Product->findDepartmentProduct($department,$minPrice,$maxPrice,$gender,$brand);
+
+        }
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query,$request->query->getInt('page', 1),10,array('distinct' => false));
@@ -128,6 +138,18 @@ class DefaultController extends  Controller
 
         $query =  $Product->findCategoryProduct($category);
 
+
+        if ($request->isMethod('POST')) {
+
+            $minPrice=$request->get('minPrice');
+            $maxPrice=$request->get('maxPrice');
+            $gender=$request->get('gender');
+            $brand=$request->get('brand');
+            $query =  $Product->findCategoryProduct($category,$minPrice,$maxPrice,$gender,$brand);
+
+        }
+
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($query,$request->query->getInt('page', 1),10,array('distinct' => false));
 
@@ -156,6 +178,18 @@ class DefaultController extends  Controller
 
 
         $query =  $Product->findGroupProduct($group);
+
+        if ($request->isMethod('POST')) {
+
+            $minPrice=$request->get('minPrice');
+            $maxPrice=$request->get('maxPrice');
+            $gender=$request->get('gender');
+            $brand=$request->get('brand');
+            $query =  $Product->findGroupProduct($group,$minPrice,$maxPrice,$gender,$brand);
+
+        }
+
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -192,9 +226,13 @@ class DefaultController extends  Controller
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $product = $Product->find($id);
 
+        $group=$product->getGroup();
+
         $customersChoiceProducts = $Product->mostView('20');
+
         $sponsoredProducts = $Product->findAllRecentProducts('15');
-        $similarProducts = $Product->findAllRecentProducts('15');
+
+        $similarProducts = $Product->findGroupProduct($group);
 
         if ($product) {
 

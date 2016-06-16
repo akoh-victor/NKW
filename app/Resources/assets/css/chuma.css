@@ -9,7 +9,7 @@
 body {
     background-color: #EBE8E4;
     color: #222;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: cursive;
     font-weight: 300;
     font-size: 15px;
 }
@@ -46,7 +46,7 @@ body {
     padding: 0.1em 0 10px;
     white-space: nowrap;
     margin-top: 1.5em;
-    margin-bottom: 2em;
+    margin-bottom: 3.5em;
 }
 .ads{
     width: 100%;
@@ -257,8 +257,8 @@ body {
     border-top: 0;
     border-radius: 0 0 0 0;
     box-shadow: 0 9px 9px -1px rgba(0, 0, 0, 0.055);
-    margin: 4em 1em 0;
-    padding: .3em ;
+    margin: 1em 1em 4em 2em;
+    padding: 0.6em ;
     opacity: 3;
     left: 5%;
     right: 5%;
@@ -275,7 +275,7 @@ body {
 }
 
 .department-writeup{
-    margin: 0px 0px 50px; font-family: Aleo Regular,Palatino Linotype,Palatino;
+    margin: 0px 0px 50px; font-family: cursive;
     margin-left: 0px;
     text-overflow: clip;
     height: 118px;
@@ -352,7 +352,7 @@ background: rgb(113,223,113);
     padding-top: 1%;
     font-size: 1.1em;
     font-weight: lighter;
-    font-family: "Courier New", Courier;
+    font-family:  cursive;
 }
 
 .carouselProducts{
@@ -366,7 +366,9 @@ background: rgb(113,223,113);
     height: 28%
 }
 
-.link {  }
+.link {
+padding-top: 3em;
+}
 .link ul
 {
     list-style-type:none;
@@ -378,12 +380,13 @@ background: rgb(113,223,113);
     display: inline;
     float: left;
     margin: 0.9em 0.5em;
+    padding: 0.2em;
 
 }
 
 .link ul li a {
     display:block;
-    width:13em;
+    width:14em;
 }
 
 
@@ -428,6 +431,9 @@ span img{
 }
 .h2, h2 {
     font-size: 25px;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: cursive;
 }
 
 

@@ -12,61 +12,115 @@ use AppBundle\Entity\Product;
 class ProductRepository extends EntityRepository
     {
 
-    public function findDepartmentProduct($department)
+    public function findDepartmentProduct($department,$limit=null, $minPrice=null,$maxPrice=null,$gender=null,$brand=null)
     {
-        return $this
-            ->createQueryBuilder('l')
+        $query = $this ->createQueryBuilder('l')
             ->select('p')
             ->from('AppBundle:Product','p')
             ->join('p.group', 'g')
             ->join('g.category', 'c')
             ->join('c.department', 'd')
             ->where('d = :department')
-            ->setParameter('department', $department)
-            ->getQuery()
-            ->getResult();
+            ->setParameter('department', $department);
+
+            if(!$minPrice == null){
+                $query =  $query->andWhere('p.price >= :minPrice')
+                       ->setParameter('minPrice',$minPrice);
+            }
+            if(!$maxPrice == null){
+                $query = $query->andWhere('p.price <= :maxPrice')
+                       ->setParameter('maxPrice',$maxPrice);
+            }
+            if(!$gender == null){
+                $query = $query->andWhere('p.gender = :gender')
+                       ->setParameter('gender',$gender);
+            }
+
+            if(!$brand == null){
+                $query = $query->andWhere('p.brand = :brand')
+                       ->setParameter('brand',$brand);
+            }
+        if(!$limit == null){
+            $query = $query->setMaxResults($limit);
+        }
+        $query = $query ->getQuery()->getResult();
+
+            return $query;
 
     }
 
-    public function findCategoryProduct($category,$minPrice=null,$maxPrice=null,$gender=null)
+    public function findCategoryProduct($category,$limit=null,$minPrice=null,$maxPrice=null,$gender=null,$brand=null)
     {
-        $countgb = $this->createQueryBuilder('1')
-            ->select('count(p)')
-            ->from('AppBundle:Product','p')
-            ->join('p.group', 'g')
-            ->join('g.category', 'c')
-            ->where('c = :category')
-            ->andWhere('p.visible >= :true')
-            ->setParameter('category', $category)
-            ->setParameter('true', 1);
-        $count = $countgb->getQuery()->getSingleScalarResult();
 
-         $query = $this->createQueryBuilder('1')
+        $query = $this ->createQueryBuilder('l')
             ->select('p')
             ->from('AppBundle:Product','p')
             ->join('p.group', 'g')
             ->join('g.category', 'c')
             ->where('c = :category')
-            ->andWhere('p.visible >= :true')
-            ->setParameter('category', $category)
-            ->setParameter('true', 1);
-        $query ->getQuery()
-            ->setHint('knp_paginator.count', $count);
-        return $query;
+            ->setParameter('category', $category);
+
+            if(!$minPrice == null){
+                $query =  $query->andWhere('p.price >= :minPrice')
+                    ->setParameter('minPrice',$minPrice);
+            }
+            if(!$maxPrice == null){
+                $query = $query->andWhere('p.price <= :maxPrice')
+                    ->setParameter('maxPrice',$maxPrice);
+            }
+            if(!$gender == null){
+                $query = $query->andWhere('p.gender = :gender')
+                    ->setParameter('gender',$gender);
+            }
+
+            if(!$brand == null){
+                $query = $query->andWhere('p.brand = :brand')
+                    ->setParameter('brand',$brand);
+            }
+        if(!$limit == null){
+            $query = $query->setMaxResults($limit);
+        }
+            $query = $query ->getQuery()->getResult();
+
+            return $query;
+
     }
 
 
-    public function findGroupProduct($group)
+    public function findGroupProduct($group,$limit=null,$minPrice=null,$maxPrice=null,$gender=null,$brand=null)
     {
-        return $this
-            ->createQueryBuilder('l')
+
+        $query = $this ->createQueryBuilder('l')
             ->select('p')
             ->from('AppBundle:Product','p')
             ->join('p.group', 'g')
             ->where('g = :group')
-            ->setParameter('group', $group)
-            ->getQuery()
-            ->getResult();
+            ->setParameter('group', $group);
+
+        if(!$minPrice == null){
+            $query =  $query->andWhere('p.price >= :minPrice')
+                ->setParameter('minPrice',$minPrice);
+        }
+        if(!$maxPrice == null){
+            $query = $query->andWhere('p.price <= :maxPrice')
+                ->setParameter('maxPrice',$maxPrice);
+        }
+        if(!$gender == null){
+            $query = $query->andWhere('p.gender = :gender')
+                ->setParameter('gender',$gender);
+        }
+
+        if(!$brand == null){
+            $query = $query->andWhere('p.brand = :brand')
+                ->setParameter('brand',$brand);
+        }
+        if(!$limit == null){
+            $query = $query->setMaxResults($limit);
+        }
+        $query->orderBy('p.created', 'DESC');
+        $query = $query ->getQuery()->getResult();
+
+        return $query;
     }
 
     public function findBrandProduct($brand)
@@ -87,19 +141,7 @@ class ProductRepository extends EntityRepository
 
 
 
-    public function findPositionedNews($position,$limit)
-       {
-		return $this
-		 ->createQueryBuilder('n')
-            ->select('n')
-            ->where('n.position = :position')
-            ->andWhere('n.expire = :no')
-            ->setParameter('no',0)
-            ->setParameter('position', $position)
-            ->setMaxResults($limit)
-            ->getQuery()
-			->getResult();
-       }
+
     public function findAllRecentProducts($limit) {
         return $this
             ->createQueryBuilder('e')
@@ -114,46 +156,8 @@ class ProductRepository extends EntityRepository
             ->getResult();
     }
 
-    public function importantNews($limit)
-    {
-        return $this
-            ->createQueryBuilder('n')
-            ->select('n')
-            ->orderBy('n.priorit', 'DESC')
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult();
-    }
 
-    public function moreNews($catId,$limit)
-    {
-        return $this
-            ->createQueryBuilder('n')
-            ->select('n')
-            ->where('n.category = :catId')
-            ->andWhere('n.expire = :no')
-            ->setParameter('no',0)
-            ->setParameter('catId', $catId)
-            ->orderBy('n.id', 'DESC')
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult();
 
-    }
-
-    public function badgeNews($limit)
-    {
-        return $this
-            ->createQueryBuilder('n')
-            ->select('n')
-            ->Where('n.expire = :no')
-            ->setParameter('no',0)
-            ->orderBy('n.priority', 'DESC')
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult();
-
-    }
     public function mostView($limit){
         return $this
             ->createQueryBuilder('n')

@@ -14,6 +14,13 @@
               "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
               "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
               "%kernel.root_dir%/Resources/assets/css/font.css"
+
+              "%kernel.root_dir%/Resources/assets/css/nav/basic-styles.css"
+              "%kernel.root_dir%/Resources/assets/css/nav/normalize.css"
+              "%kernel.root_dir%/Resources/assets/css/nav/okayNav-base.css"
+              "%kernel.root_dir%/Resources/assets/css/nav/header.css"
+              "%kernel.root_dir%/Resources/assets/css/nav/okayNav-theme.css"
+
               "%kernel.root_dir%/Resources/assets/css/admin.css"
               "%kernel.root_dir%/Resources/assets/css/carousel.css"
               "%kernel.root_dir%/Resources/assets/css/camera.css"
@@ -33,22 +40,21 @@
 {% endblock %}
  </head>
  <body style="font-family: cursive ">
-  <header>
-  </header>
-  <div class="user-nav">
-      {% set cart = sylius_cart_get() %}
+  <header id="header" class="okayNav-header">
+      <ul class="okayNav-header__logo" >
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <li>Hi {{ app.user.username }}!</li>
+          {% else %}
+              <li>Hi all!</li>
+          {% endif %}
+
+          <li> <a href= "{{ path('contactUs') }}">Contact & Support</a></li>
+      </ul>
+      <div role="navigation" id="nav-main" class="okayNav">
+          {% set cart = sylius_cart_get() %}
+
+
           <ul>
-              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                  <li>Hi {{ app.user.username }}!</li>
-              {% else %}
-                  <li>Hi all!</li>
-              {% endif %}
-
-              <li> <a href= "{{ path('contactUs') }}">Contact & Support</a></li>
-          </ul>
-
-
-          <ul class="pull-right">
               <li>
                   <a href= "{{ path('showProfileAccount') }}">My Account</a>
               </li>
@@ -66,7 +72,9 @@
                   <a href= "{{ path('customer_registration') }}">Sign Up</a>
               </li>
           </ul>
-  </div>
+      </div>
+  </header>
+
 <div class="container-fluid">
     {% block header %}
 
@@ -78,33 +86,31 @@
                 </a>
             </div>
             <div class="col-md-8">
-            <form action="{{ path('search') }}" method="post">
-                <div class="input-group">
+                <form action="{{ path('search') }}" method="post">
+                    <div class="input-group">
 
-                    <span style="padding: 0; margin: 0" class="input-group-addon">
-                         <select name="scope"  class="form-control-static" >
-                             <option value="0">All Categories</option>
-                             {% for category in categories %}
-                             <option value="{{ category.id }}">{{ category.name }}</option>
-                             {% endfor %}
-                         </select>
-                    </span>
+                        <span style="padding: 0; margin: 0" class="input-group-addon">
+                             <select name="scope"  class="form-control-static" >
+                                 <option value="0">All Categories</option>
+                                 {% for category in categories %}
+                                 <option value="{{ category.id }}">{{ category.name }}</option>
+                                 {% endfor %}
+                             </select>
+                        </span>
 
-                          <input type="text" name="data" value="
-                          {% if data is defined %}
-                           {{ data }}
-                          {% endif %}
-                          "class="form-control" placeholder="Search for products">
-                    <span class="input-group-btn">
-                        <input type="submit" class="btn btn-default" value="Search">
-                    </span>
+                              <input type="text" name="data" value="
+                              {#{% if data is defined %}
+                               {{ data }}
+                              {% endif %}#}
+                              "class="form-control" placeholder="Search for products">
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-default" value="Search !!!">
+                        </span>
 
-                </div>
-            </form>
+                    </div>
+                </form>
             </div>
             <div class="col-md-2">
-
-
             </div>
         </div>
 
@@ -114,25 +120,23 @@
                 {% if departments is defined %}
                     <ul>
                         {% for department in departments %}
-                            <li ><a href="{{ path('department',{'id': department.id}) }}">{{ department.name |
-                                    title }}<span
-                                            class="caret"></span></a>
+                            <li><a href="{{ path('department',{'id': department.id}) }}"><strong>{{ department.name | title }}<span class="caret"></span></strong></a>
                               <div>
                                     <div class="col-sm-4">
                                         <h5><strong>Additional Categories</strong></h5>
                                     <ul>
                                         {% for category in department.category %}
-                                            <li><a href="{{ path('category',{'categoryId': category.id}) }}">{{ category.name
-                                                    |title
-                                                    }}</a></li>
+                                            <li style="color: teal;padding-left: 2em; padding-bottom: 1em;"><a style="color: teal;"  href="{{ path('category',{'categoryId': category.id}) }}"><strong>{{ category.name
+                                                    |title}}</strong></a></li>
                                         {% endfor %}
                                     </ul>
                                     </div>
 
-                                    <div class="col-sm-8">
+                                    <div style="overflow: hidden" class="col-sm-8">
 
                                         <a href="{{ path('department',{'id': department.id}) }}">
-                                           <img  src = '{{ vich_uploader_asset(department, 'imageFile') }}' style="height: 100%;width: 100%"/>
+                                           <img  src = '{{ vich_uploader_asset(department, 'imageFile') }}' style="height: 100%;
+                                           width: 100%; overflow: hidden"/>
 
                                         </a>
                                     </div>
@@ -164,6 +168,7 @@
              <div class="clear-fix"></div>
           <div class="row">
               {% block slogan %}
+
               {% endblock %}
           </div>
           <div class="row">
@@ -196,7 +201,7 @@
 
               <div class="col-xs-3">
                   <h1><small>Services</small></h1>
-                  <p>detaild list of services we render</p>
+                  <p>At nimi kiddies we provide all your babies need ranging from food,room accessories,toys parties etc </p>
               </div>
 
               <div class="col-xs-3">
@@ -238,8 +243,9 @@
         {% javascripts filter="?jsqueeze" output="js/app.js"
             "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
             "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
-            "%kernel.root_dir%/Resources/assets/js/carousel.js"
-             "%kernel.root_dir%/Resources/assets/js/camera.min.js" %}
+           "%kernel.root_dir%/Resources/assets/js/carousel.js"
+            "%kernel.root_dir%/Resources/assets/js/nav/jquery.okayNav.js"
+           "%kernel.root_dir%/Resources/assets/js/camera.min.js" %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
@@ -306,10 +312,9 @@
                         stopOnHover:true,
                         scrollPerPage:true,
                         autoPlay: 3000,
-                        items : 6,
+                        items : 4,
                         itemsDesktop : [1199,3],
                         itemsDesktopSmall : [979,3],
-
                         navigation : false
                     });
                     $("#selectedProducts").owlCarousel({
@@ -357,6 +362,9 @@
 
                 });
 
+            </script>
+            <script type="text/javascript">
+                var navigation = $('#nav-main').okayNav();
             </script>
         {% endblock %}
  </body>

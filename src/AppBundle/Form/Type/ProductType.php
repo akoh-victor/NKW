@@ -32,6 +32,10 @@ class ProductType extends AbstractType
                 'class'=>'AppBundle:Brand',
                 'property'=>'name'
                  ))
+            ->add('gender','entity', array(
+                'class'=>'AppBundle:Gender',
+                'property'=>'name'
+            ))
             ->add('name', 'text', array('label' => 'Name','attr' => array('class'=>'form-control')))
             ->add('code', 'integer', array('label' => 'Product Code','attr' => array('class'=>'form-control')))
             ->add('openingQuantity', 'integer', array('label' => 'Opening Quantity','attr' => array('class'=>'form-control')))
